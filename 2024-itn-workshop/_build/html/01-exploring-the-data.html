@@ -1,0 +1,1008 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Exploring the Data &#8212; 2024 q2-ITN workshop</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="_static/usage.js?v=858a412f"></script>
+    <script src="_static/external-links.js?v=a7dd342f"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01-exploring-the-data';</script>
+    <link rel="canonical" href="http://localhost:8000/01-exploring-the-data.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Phylogenetic tree construction" href="02-building-phylogeny.html" />
+    <link rel="prev" title="Setting Up Docker" href="00-set-up.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="2024 q2-ITN workshop - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="2024 q2-ITN workshop - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00-set-up.html">Setting Up Docker</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Exploring the Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-building-phylogeny.html">Phylogenetic tree construction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-sampling-depth.html">Alpha rarefaction plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-diversity-metrics.html">Computing diversity metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-q2-fmt.html">q2-fmt TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-provenance.html">Provenance in QIIME 2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F01-exploring-the-data.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/01-exploring-the-data.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Exploring the Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="exploring-the-data">
+<h1>Exploring the Data<a class="headerlink" href="#exploring-the-data" title="Link to this heading">#</a></h1>
+<script id="interfaces" type="application/json">{"default": "cli-usage", "available": {"python3-usage": ["Python 3 API (qiime2)", true], "r-usage": ["R API (qiime2)", true], "cli-usage": ["Command Line (q2cli)", true], "galaxy-usage": ["Galaxy (q2galaxy)", true], "raw-usage": ["View Source (qiime2.sdk)", false]}, "classes": [".python3-usage", ".r-usage", ".cli-usage", ".galaxy-usage", ".raw-usage"]}</script><span class="usage-selector"></span><p>TODO: We need to host the q2-fmt metadata</p>
+<div class="python3-usage highlight-default notranslate" id="usage-0"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiime2</span> <span class="kn">import</span> <span class="n">Metadata</span>
+<span class="kn">from</span> <span class="nn">urllib</span> <span class="kn">import</span> <span class="n">request</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://localhost:8000/data/01-exploring-the-data/sample-metadata.tsv&#39;</span>
+<span class="n">fn</span> <span class="o">=</span> <span class="s1">&#39;sample-metadata.tsv&#39;</span>
+<span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span>
+<span class="n">sample_metadata_md</span> <span class="o">=</span> <span class="n">Metadata</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="r-usage highlight-default notranslate" id="usage-1"><div class="highlight"><pre><span></span>library(reticulate)
+
+Metadata &lt;- import(&quot;qiime2&quot;)$Metadata
+request &lt;- import(&quot;urllib&quot;)$request
+
+url &lt;- &#39;http://localhost:8000/data/01-exploring-the-data/sample-metadata.tsv&#39;
+fn &lt;- &#39;sample-metadata.tsv&#39;
+request$urlretrieve(url, fn)
+sample_metadata_md &lt;- Metadata$load(fn)
+</pre></div>
+</div>
+<div class="cli-usage highlight-default notranslate" id="usage-2"><div class="highlight"><pre><span></span><span class="n">wget</span> \
+  <span class="o">-</span><span class="n">O</span> <span class="s1">&#39;sample-metadata.tsv&#39;</span> \
+  <span class="s1">&#39;http://localhost:8000/data/01-exploring-the-data/sample-metadata.tsv&#39;</span>
+</pre></div>
+</div>
+<div class="raw-usage highlight-default notranslate" id="usage-5"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">partial_metadata_factory</span><span class="p">():</span>
+    <span class="c1">## This function is identical to the filter.md metadata_factory function - should</span>
+    <span class="c1">## be able to call that once issue#1 is addressed.</span>
+    <span class="kn">import</span> <span class="nn">tempfile</span>
+    <span class="kn">import</span> <span class="nn">requests</span>
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+    <span class="kn">import</span> <span class="nn">qiime2</span>
+
+    <span class="n">sample_metadata_url</span> <span class="o">=</span> <span class="s1">&#39;https://data.qiime2.org/2024.5/tutorials/liao/sample-metadata.tsv&#39;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">sample_metadata_url</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">()</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="n">sample_metadata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;SampleID&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">patient_sample_counts</span> <span class="o">=</span> <span class="n">sample_metadata</span><span class="p">[</span><span class="s1">&#39;PatientID&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+    <span class="n">sample_metadata</span><span class="p">[</span><span class="s1">&#39;patient-sample-counts&#39;</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="n">patient_sample_counts</span><span class="p">[</span><span class="n">sample_metadata</span><span class="p">[</span><span class="s1">&#39;PatientID&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+
+
+    <span class="n">transplant_metadata_url</span> <span class="o">=</span> <span class="s1">&#39;https://data.qiime2.org/2024.5/tutorials/liao/transplant-metadata.tsv&#39;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">transplant_metadata_url</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">()</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="n">transplant_metadata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="c1"># If a patient received multiple HCTs, keep data only on the most recent.</span>
+    <span class="c1"># This is useful for simplifying downstream workflows.</span>
+    <span class="n">transplant_metadata</span> <span class="o">=</span> <span class="n">transplant_metadata</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;TimepointOfTransplant&#39;</span><span class="p">)</span>
+    <span class="n">most_recent_transplant_metadata</span> <span class="o">=</span> <span class="n">transplant_metadata</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;PatientID&#39;</span><span class="p">],</span> <span class="n">keep</span><span class="o">=</span><span class="s1">&#39;last&#39;</span><span class="p">)</span>
+    <span class="n">most_recent_transplant_metadata</span> <span class="o">=</span> <span class="n">most_recent_transplant_metadata</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;PatientID&#39;</span><span class="p">)</span>
+
+
+    <span class="n">autoFmtControlIds</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;C</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">12</span><span class="p">)}</span>
+    <span class="n">autoFmtTreatmentIds</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;T</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">15</span><span class="p">)}</span>
+    <span class="n">new_column</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">ptid</span><span class="p">,</span> <span class="n">aptid</span> <span class="ow">in</span> <span class="n">most_recent_transplant_metadata</span><span class="p">[</span><span class="s1">&#39;autoFmtPatientId&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">aptid</span> <span class="ow">in</span> <span class="n">autoFmtControlIds</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="s1">&#39;control&#39;</span>
+        <span class="k">elif</span> <span class="n">aptid</span> <span class="ow">in</span> <span class="n">autoFmtTreatmentIds</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="s1">&#39;treatment&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="n">new_column</span><span class="p">[</span><span class="n">ptid</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="n">most_recent_transplant_metadata</span><span class="p">[</span><span class="s1">&#39;autoFmtGroup&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">new_column</span><span class="p">)</span>
+
+    <span class="n">sample_metadata</span> <span class="o">=</span> <span class="n">sample_metadata</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">most_recent_transplant_metadata</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;PatientID&#39;</span><span class="p">)</span>
+
+    <span class="n">sample_metadata</span><span class="p">[</span><span class="s1">&#39;categorical-time-relative-to-hct&#39;</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">sample_metadata</span><span class="p">[</span><span class="s1">&#39;DayRelativeToNearestHCT&#39;</span><span class="p">],</span>
+               <span class="p">[</span><span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span>
+               <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pre&#39;</span><span class="p">,</span> <span class="s1">&#39;peri&#39;</span><span class="p">,</span> <span class="s1">&#39;post&#39;</span><span class="p">])</span>
+
+    <span class="n">sample_metadata</span><span class="p">[</span><span class="s1">&#39;week-relative-to-hct&#39;</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">sample_metadata</span><span class="p">[</span><span class="s1">&#39;DayRelativeToNearestHCT&#39;</span><span class="p">],</span>
+               <span class="p">[</span><span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="o">-</span><span class="mi">14</span><span class="p">,</span> <span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span>
+               <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+
+    <span class="n">sample_metadata</span> <span class="o">=</span> <span class="n">sample_metadata</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span>
+            <span class="p">{</span><span class="s1">&#39;categorical-time-relative-to-hct&#39;</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
+             <span class="s1">&#39;week-relative-to-hct&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">qiime2</span><span class="o">.</span><span class="n">Metadata</span><span class="p">(</span><span class="n">sample_metadata</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">fmt_metadata_factory</span><span class="p">():</span>
+    <span class="c1"># obtain the metadata that we&#39;ve been using so far</span>
+    <span class="n">sample_metadata</span> <span class="o">=</span> <span class="n">partial_metadata_factory</span><span class="p">()</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+
+    <span class="c1"># obtain the autoFMT-specific metadata</span>
+    <span class="kn">import</span> <span class="nn">tempfile</span>
+    <span class="kn">import</span> <span class="nn">requests</span>
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+    <span class="kn">import</span> <span class="nn">qiime2</span>
+
+    <span class="n">fmt_metadata_url</span> <span class="o">=</span> <span class="s1">&#39;https://data.qiime2.org/2024.5/tutorials/liao/fmt-metadata.tsv&#39;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">fmt_metadata_url</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">()</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+        <span class="n">fmt_metadata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">fmt_metadata</span> <span class="o">=</span> <span class="n">fmt_metadata</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;PatientID&#39;</span><span class="p">)</span>
+
+    <span class="c1"># join the two metadata collections, dropping duplicate columns</span>
+    <span class="n">sample_metadata</span> <span class="o">=</span> <span class="n">sample_metadata</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fmt_metadata</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;autoFmtPatientId&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;PatientID&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Create new column relating all samples to day relative to FMT treatment.</span>
+    <span class="c1"># For patients in the &quot;control&quot; group, this will be the day they were</span>
+    <span class="c1"># assigned to that group, which is when they would have received the FMT</span>
+    <span class="c1"># (or one to two days before that) if they had been assigned to the</span>
+    <span class="c1"># &quot;treatment&quot; group.</span>
+    <span class="n">fmt_day</span> <span class="o">=</span> <span class="n">sample_metadata</span><span class="p">[</span><span class="s1">&#39;FMTDayRelativeToNearestHCT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span>
+                <span class="n">sample_metadata</span><span class="p">[</span><span class="s1">&#39;RandomizationDayRelativeToNearestHCT&#39;</span><span class="p">])</span>
+    <span class="n">day_relative_to_fmt</span> <span class="o">=</span> <span class="n">sample_metadata</span><span class="p">[</span><span class="s1">&#39;DayRelativeToNearestHCT&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">fmt_day</span>
+    <span class="n">sample_metadata</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;day-relative-to-fmt&#39;</span><span class="p">,</span> <span class="n">day_relative_to_fmt</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">sample_metadata</span><span class="p">[</span><span class="s1">&#39;week-relative-to-fmt&#39;</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">sample_metadata</span><span class="p">[</span><span class="s1">&#39;day-relative-to-fmt&#39;</span><span class="p">],</span>
+               <span class="p">[</span><span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="o">-</span><span class="mi">14</span><span class="p">,</span> <span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span>
+               <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+
+    <span class="n">sample_metadata</span><span class="p">[</span><span class="s1">&#39;categorical-time-relative-to-fmt&#39;</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">sample_metadata</span><span class="p">[</span><span class="s1">&#39;day-relative-to-fmt&#39;</span><span class="p">],</span>
+               <span class="p">[</span><span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span>
+               <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pre&#39;</span><span class="p">,</span> <span class="s1">&#39;peri&#39;</span><span class="p">,</span> <span class="s1">&#39;post&#39;</span><span class="p">])</span>
+
+    <span class="n">sample_metadata</span> <span class="o">=</span> <span class="n">sample_metadata</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span>
+            <span class="p">{</span><span class="s1">&#39;categorical-time-relative-to-fmt&#39;</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
+             <span class="s1">&#39;week-relative-to-fmt&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">qiime2</span><span class="o">.</span><span class="n">Metadata</span><span class="p">(</span><span class="n">sample_metadata</span><span class="p">)</span>
+
+<span class="n">sample_metadata</span> <span class="o">=</span> <span class="n">use</span><span class="o">.</span><span class="n">init_metadata</span><span class="p">(</span><span class="s1">&#39;sample_metadata&#39;</span><span class="p">,</span> <span class="n">fmt_metadata_factory</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="galaxy-usage compound" id="usage-3">
+<dl class="simple">
+<dt>Using the <code class="docutils literal notranslate"><span class="pre">Upload</span> <span class="pre">Data</span></code> tool:</dt><dd><ol class="arabic simple">
+<li><p>On the first tab (<strong>Regular</strong>), press the <code class="docutils literal notranslate"><span class="pre">Paste/Fetch</span></code> data button at the bottom.</p>
+<ol class="arabic simple">
+<li><p>Set <em>“Name”</em> (first text-field) to: <code class="docutils literal notranslate"><span class="pre">sample-metadata.tsv</span></code></p></li>
+<li><p>In the larger text-area, copy-and-paste: <a class="reference external" href="http://localhost:8000/data/01-exploring-the-data/sample-metadata.tsv">http://localhost:8000/data/01-exploring-the-data/sample-metadata.tsv</a></p></li>
+<li><p>(<em>“Type”</em>, <em>“Genome”</em>, and <em>“Settings”</em> can be ignored)</p></li>
+</ol>
+</li>
+<li><p>Press the <code class="docutils literal notranslate"><span class="pre">Start</span></code> button at the bottom.</p></li>
+</ol>
+</dd>
+</dl>
+</div>
+<div class="exec-usage compound" id="usage-4">
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sample-metadata.tsv</span></code><span> | </span><a class="reference external" href="http://localhost:8000/data/01-exploring-the-data/sample-metadata.tsv"><span>download</span></a></p></li>
+</ul>
+</div>
+<div class="python3-usage highlight-default notranslate" id="usage-6"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">qiime2.plugins.metadata.actions</span> <span class="k">as</span> <span class="nn">metadata_actions</span>
+
+<span class="n">metadata_summ_1_viz</span><span class="p">,</span> <span class="o">=</span> <span class="n">metadata_actions</span><span class="o">.</span><span class="n">tabulate</span><span class="p">(</span>
+    <span class="nb">input</span><span class="o">=</span><span class="n">sample_metadata_md</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="r-usage highlight-default notranslate" id="usage-7"><div class="highlight"><pre><span></span>metadata_actions &lt;- import(&quot;qiime2.plugins.metadata.actions&quot;)
+
+action_results &lt;- metadata_actions$tabulate(
+    input=sample_metadata_md,
+)
+metadata_summ_1_viz &lt;- action_results$visualization
+</pre></div>
+</div>
+<div class="cli-usage highlight-default notranslate" id="usage-8"><div class="highlight"><pre><span></span><span class="n">qiime</span> <span class="n">metadata</span> <span class="n">tabulate</span> \
+  <span class="o">--</span><span class="n">m</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="n">file</span> <span class="n">sample</span><span class="o">-</span><span class="n">metadata</span><span class="o">.</span><span class="n">tsv</span> \
+  <span class="o">--</span><span class="n">o</span><span class="o">-</span><span class="n">visualization</span> <span class="n">metadata</span><span class="o">-</span><span class="n">summ</span><span class="o">-</span><span class="mf">1.</span><span class="n">qzv</span>
+</pre></div>
+</div>
+<div class="raw-usage highlight-default notranslate" id="usage-11"><div class="highlight"><pre><span></span><span class="n">use</span><span class="o">.</span><span class="n">action</span><span class="p">(</span>
+    <span class="n">use</span><span class="o">.</span><span class="n">UsageAction</span><span class="p">(</span><span class="n">plugin_id</span><span class="o">=</span><span class="s1">&#39;metadata&#39;</span><span class="p">,</span> <span class="n">action_id</span><span class="o">=</span><span class="s1">&#39;tabulate&#39;</span><span class="p">),</span>
+    <span class="n">use</span><span class="o">.</span><span class="n">UsageInputs</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">sample_metadata</span><span class="p">),</span>
+    <span class="n">use</span><span class="o">.</span><span class="n">UsageOutputNames</span><span class="p">(</span><span class="n">visualization</span><span class="o">=</span><span class="s1">&#39;metadata_summ_1&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="galaxy-usage compound" id="usage-9">
+<dl>
+<dt>Using the <code class="docutils literal notranslate"><span class="pre">qiime2</span> <span class="pre">metadata</span> <span class="pre">tabulate</span></code> tool:</dt><dd><ol class="arabic simple">
+<li><p>For <em>“input”</em>:</p>
+<ul class="simple">
+<li><p>Perform the following steps.</p>
+<ol class="arabic simple">
+<li><p>Leave as <code class="docutils literal notranslate"><span class="pre">Metadata</span> <span class="pre">from</span> <span class="pre">TSV</span></code></p></li>
+<li><p>Set <em>“Metadata Source”</em> to <code class="docutils literal notranslate"><span class="pre">sample-metadata.tsv</span></code></p></li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>Press the <code class="docutils literal notranslate"><span class="pre">Execute</span></code> button.</p></li>
+</ol>
+</dd>
+<dt>Once completed, for the new entry in your history, use the <code class="docutils literal notranslate"><span class="pre">Edit</span></code> button to set the name as follows:</dt><dd><p>(Renaming is optional, but it will make any subsequent steps easier to complete.)</p>
+<div class="pst-scrollable-table-container"><table class="table table-left">
+<thead>
+<tr class="row-odd"><th class="head"><p>History Name</p></th>
+<th class="head"><p><em>“Name”</em> to set (be sure to press <code class="docutils literal notranslate"><span class="pre">Save</span></code>)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">#:</span> <span class="pre">qiime2</span> <span class="pre">metadata</span> <span class="pre">tabulate</span> <span class="pre">[...]</span> <span class="pre">:</span> <span class="pre">visualization.qzv</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">metadata-summ-1.qzv</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</dd>
+</dl>
+</div>
+<div class="exec-usage compound" id="usage-10">
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata-summ-1.qzv</span></code><span> | </span><a class="reference external" href="https://view.qiime2.org?src=http%3A%2F%2Flocalhost%3A8000%2Fdata%2F01-exploring-the-data%2Fmetadata-summ-1.qzv"><span>view</span></a><span> | </span><a class="reference external" href="http://localhost:8000/data/01-exploring-the-data/metadata-summ-1.qzv"><span>download</span></a></p></li>
+</ul>
+</div>
+<p>We could download this file but that means we will have to filter
+otherwise we need to host the autofmt group feature table</p>
+<div class="python3-usage highlight-default notranslate" id="usage-12"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiime2</span> <span class="kn">import</span> <span class="n">Artifact</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://localhost:8000/data/01-exploring-the-data/feature-table.qza&#39;</span>
+<span class="n">fn</span> <span class="o">=</span> <span class="s1">&#39;feature-table.qza&#39;</span>
+<span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span>
+<span class="n">feature_table</span> <span class="o">=</span> <span class="n">Artifact</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="r-usage highlight-default notranslate" id="usage-13"><div class="highlight"><pre><span></span>Artifact &lt;- import(&quot;qiime2&quot;)$Artifact
+
+url &lt;- &#39;http://localhost:8000/data/01-exploring-the-data/feature-table.qza&#39;
+fn &lt;- &#39;feature-table.qza&#39;
+request$urlretrieve(url, fn)
+feature_table &lt;- Artifact$load(fn)
+</pre></div>
+</div>
+<div class="cli-usage highlight-default notranslate" id="usage-14"><div class="highlight"><pre><span></span><span class="n">wget</span> \
+  <span class="o">-</span><span class="n">O</span> <span class="s1">&#39;feature-table.qza&#39;</span> \
+  <span class="s1">&#39;http://localhost:8000/data/01-exploring-the-data/feature-table.qza&#39;</span>
+</pre></div>
+</div>
+<div class="raw-usage highlight-default notranslate" id="usage-17"><div class="highlight"><pre><span></span><span class="n">feature_table_url</span> <span class="o">=</span> <span class="s1">&#39;https://data.qiime2.org/2024.5/tutorials/liao/full-feature-table.qza&#39;</span>
+
+<span class="k">def</span> <span class="nf">artifact_from_url</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">factory</span><span class="p">():</span>
+        <span class="kn">import</span> <span class="nn">tempfile</span>
+        <span class="kn">import</span> <span class="nn">requests</span>
+        <span class="kn">import</span> <span class="nn">qiime2</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">()</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">qiime2</span><span class="o">.</span><span class="n">Artifact</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">result</span>
+    <span class="k">return</span> <span class="n">factory</span>
+
+<span class="n">feature_table</span> <span class="o">=</span> <span class="n">use</span><span class="o">.</span><span class="n">init_artifact</span><span class="p">(</span>
+        <span class="s1">&#39;feature-table&#39;</span><span class="p">,</span>
+        <span class="n">artifact_from_url</span><span class="p">(</span><span class="n">feature_table_url</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="galaxy-usage compound" id="usage-15">
+<dl class="simple">
+<dt>Using the <code class="docutils literal notranslate"><span class="pre">Upload</span> <span class="pre">Data</span></code> tool:</dt><dd><ol class="arabic simple">
+<li><p>On the first tab (<strong>Regular</strong>), press the <code class="docutils literal notranslate"><span class="pre">Paste/Fetch</span></code> data button at the bottom.</p>
+<ol class="arabic simple">
+<li><p>Set <em>“Name”</em> (first text-field) to: <code class="docutils literal notranslate"><span class="pre">feature-table.qza</span></code></p></li>
+<li><p>In the larger text-area, copy-and-paste: <a class="reference external" href="http://localhost:8000/data/01-exploring-the-data/feature-table.qza">http://localhost:8000/data/01-exploring-the-data/feature-table.qza</a></p></li>
+<li><p>(<em>“Type”</em>, <em>“Genome”</em>, and <em>“Settings”</em> can be ignored)</p></li>
+</ol>
+</li>
+<li><p>Press the <code class="docutils literal notranslate"><span class="pre">Start</span></code> button at the bottom.</p></li>
+</ol>
+</dd>
+</dl>
+</div>
+<div class="exec-usage compound" id="usage-16">
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">feature-table.qza</span></code><span> | </span><a class="reference external" href="https://view.qiime2.org?src=http%3A%2F%2Flocalhost%3A8000%2Fdata%2F01-exploring-the-data%2Ffeature-table.qza"><span>view</span></a><span> | </span><a class="reference external" href="http://localhost:8000/data/01-exploring-the-data/feature-table.qza"><span>download</span></a></p></li>
+</ul>
+</div>
+<div class="python3-usage highlight-default notranslate" id="usage-18"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">qiime2.plugins.feature_table.actions</span> <span class="k">as</span> <span class="nn">feature_table_actions</span>
+
+<span class="n">table_viz</span><span class="p">,</span> <span class="o">=</span> <span class="n">feature_table_actions</span><span class="o">.</span><span class="n">summarize</span><span class="p">(</span>
+    <span class="n">table</span><span class="o">=</span><span class="n">feature_table</span><span class="p">,</span>
+    <span class="n">sample_metadata</span><span class="o">=</span><span class="n">sample_metadata_md</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="r-usage highlight-default notranslate" id="usage-19"><div class="highlight"><pre><span></span>feature_table_actions &lt;- import(&quot;qiime2.plugins.feature_table.actions&quot;)
+
+action_results &lt;- feature_table_actions$summarize(
+    table=feature_table,
+    sample_metadata=sample_metadata_md,
+)
+table_viz &lt;- action_results$visualization
+</pre></div>
+</div>
+<div class="cli-usage highlight-default notranslate" id="usage-20"><div class="highlight"><pre><span></span><span class="n">qiime</span> <span class="n">feature</span><span class="o">-</span><span class="n">table</span> <span class="n">summarize</span> \
+  <span class="o">--</span><span class="n">i</span><span class="o">-</span><span class="n">table</span> <span class="n">feature</span><span class="o">-</span><span class="n">table</span><span class="o">.</span><span class="n">qza</span> \
+  <span class="o">--</span><span class="n">m</span><span class="o">-</span><span class="n">sample</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">file</span> <span class="n">sample</span><span class="o">-</span><span class="n">metadata</span><span class="o">.</span><span class="n">tsv</span> \
+  <span class="o">--</span><span class="n">o</span><span class="o">-</span><span class="n">visualization</span> <span class="n">table</span><span class="o">.</span><span class="n">qzv</span>
+</pre></div>
+</div>
+<div class="raw-usage highlight-default notranslate" id="usage-23"><div class="highlight"><pre><span></span><span class="n">use</span><span class="o">.</span><span class="n">action</span><span class="p">(</span>
+    <span class="n">use</span><span class="o">.</span><span class="n">UsageAction</span><span class="p">(</span><span class="n">plugin_id</span><span class="o">=</span><span class="s1">&#39;feature_table&#39;</span><span class="p">,</span> <span class="n">action_id</span><span class="o">=</span><span class="s1">&#39;summarize&#39;</span><span class="p">),</span>
+    <span class="n">use</span><span class="o">.</span><span class="n">UsageInputs</span><span class="p">(</span><span class="n">table</span><span class="o">=</span><span class="n">feature_table</span><span class="p">,</span> <span class="n">sample_metadata</span><span class="o">=</span><span class="n">sample_metadata</span><span class="p">),</span>
+    <span class="n">use</span><span class="o">.</span><span class="n">UsageOutputNames</span><span class="p">(</span><span class="n">visualization</span><span class="o">=</span><span class="s1">&#39;table&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="galaxy-usage compound" id="usage-21">
+<dl>
+<dt>Using the <code class="docutils literal notranslate"><span class="pre">qiime2</span> <span class="pre">feature-table</span> <span class="pre">summarize</span></code> tool:</dt><dd><ol class="arabic simple">
+<li><p>Set <em>“table”</em> to <code class="docutils literal notranslate"><span class="pre">#:</span> <span class="pre">feature-table.qza</span></code></p></li>
+<li><p>Expand the <code class="docutils literal notranslate"><span class="pre">additional</span> <span class="pre">options</span></code> section</p>
+<ul class="simple">
+<li><p>For <em>“sample_metadata”</em>:</p>
+<ul>
+<li><p>Press the <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">Insert</span> <span class="pre">sample_metadata</span></code> button to set up the next steps.</p>
+<ol class="arabic simple">
+<li><p>Leave as <code class="docutils literal notranslate"><span class="pre">Metadata</span> <span class="pre">from</span> <span class="pre">TSV</span></code></p></li>
+<li><p>Set <em>“Metadata Source”</em> to <code class="docutils literal notranslate"><span class="pre">sample-metadata.tsv</span></code></p></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Press the <code class="docutils literal notranslate"><span class="pre">Execute</span></code> button.</p></li>
+</ol>
+</dd>
+<dt>Once completed, for the new entry in your history, use the <code class="docutils literal notranslate"><span class="pre">Edit</span></code> button to set the name as follows:</dt><dd><p>(Renaming is optional, but it will make any subsequent steps easier to complete.)</p>
+<div class="pst-scrollable-table-container"><table class="table table-left">
+<thead>
+<tr class="row-odd"><th class="head"><p>History Name</p></th>
+<th class="head"><p><em>“Name”</em> to set (be sure to press <code class="docutils literal notranslate"><span class="pre">Save</span></code>)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">#:</span> <span class="pre">qiime2</span> <span class="pre">feature-table</span> <span class="pre">summarize</span> <span class="pre">[...]</span> <span class="pre">:</span> <span class="pre">visualization.qzv</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">table.qzv</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</dd>
+</dl>
+</div>
+<div class="exec-usage compound" id="usage-22">
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table.qzv</span></code><span> | </span><a class="reference external" href="https://view.qiime2.org?src=http%3A%2F%2Flocalhost%3A8000%2Fdata%2F01-exploring-the-data%2Ftable.qzv"><span>view</span></a><span> | </span><a class="reference external" href="http://localhost:8000/data/01-exploring-the-data/table.qzv"><span>download</span></a></p></li>
+</ul>
+</div>
+<div class="python3-usage highlight-default notranslate" id="usage-24"><div class="highlight"><pre><span></span><span class="n">autofmt_table</span><span class="p">,</span> <span class="o">=</span> <span class="n">feature_table_actions</span><span class="o">.</span><span class="n">filter_samples</span><span class="p">(</span>
+    <span class="n">table</span><span class="o">=</span><span class="n">feature_table</span><span class="p">,</span>
+    <span class="n">metadata</span><span class="o">=</span><span class="n">sample_metadata_md</span><span class="p">,</span>
+    <span class="n">where</span><span class="o">=</span><span class="s1">&#39;autoFmtGroup IS NOT NULL&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="r-usage highlight-default notranslate" id="usage-25"><div class="highlight"><pre><span></span>action_results &lt;- feature_table_actions$filter_samples(
+    table=feature_table,
+    metadata=sample_metadata_md,
+    where=&#39;autoFmtGroup IS NOT NULL&#39;,
+)
+autofmt_table &lt;- action_results$filtered_table
+</pre></div>
+</div>
+<div class="cli-usage highlight-default notranslate" id="usage-26"><div class="highlight"><pre><span></span><span class="n">qiime</span> <span class="n">feature</span><span class="o">-</span><span class="n">table</span> <span class="nb">filter</span><span class="o">-</span><span class="n">samples</span> \
+  <span class="o">--</span><span class="n">i</span><span class="o">-</span><span class="n">table</span> <span class="n">feature</span><span class="o">-</span><span class="n">table</span><span class="o">.</span><span class="n">qza</span> \
+  <span class="o">--</span><span class="n">m</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">file</span> <span class="n">sample</span><span class="o">-</span><span class="n">metadata</span><span class="o">.</span><span class="n">tsv</span> \
+  <span class="o">--</span><span class="n">p</span><span class="o">-</span><span class="n">where</span> <span class="s1">&#39;autoFmtGroup IS NOT NULL&#39;</span> \
+  <span class="o">--</span><span class="n">o</span><span class="o">-</span><span class="n">filtered</span><span class="o">-</span><span class="n">table</span> <span class="n">autofmt</span><span class="o">-</span><span class="n">table</span><span class="o">.</span><span class="n">qza</span>
+</pre></div>
+</div>
+<div class="raw-usage highlight-default notranslate" id="usage-29"><div class="highlight"><pre><span></span><span class="n">autofmt_table</span><span class="p">,</span> <span class="o">=</span> <span class="n">use</span><span class="o">.</span><span class="n">action</span><span class="p">(</span>
+    <span class="n">use</span><span class="o">.</span><span class="n">UsageAction</span><span class="p">(</span><span class="n">plugin_id</span><span class="o">=</span><span class="s1">&#39;feature_table&#39;</span><span class="p">,</span> <span class="n">action_id</span><span class="o">=</span><span class="s1">&#39;filter_samples&#39;</span><span class="p">),</span>
+    <span class="n">use</span><span class="o">.</span><span class="n">UsageInputs</span><span class="p">(</span><span class="n">table</span><span class="o">=</span><span class="n">feature_table</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">sample_metadata</span><span class="p">,</span>
+                    <span class="n">where</span><span class="o">=</span><span class="s2">&quot;autoFmtGroup IS NOT NULL&quot;</span><span class="p">),</span>
+    <span class="n">use</span><span class="o">.</span><span class="n">UsageOutputNames</span><span class="p">(</span><span class="n">filtered_table</span><span class="o">=</span><span class="s1">&#39;autofmt_table&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="galaxy-usage compound" id="usage-27">
+<dl>
+<dt>Using the <code class="docutils literal notranslate"><span class="pre">qiime2</span> <span class="pre">feature-table</span> <span class="pre">filter-samples</span></code> tool:</dt><dd><ol class="arabic simple">
+<li><p>Set <em>“table”</em> to <code class="docutils literal notranslate"><span class="pre">#:</span> <span class="pre">feature-table.qza</span></code></p></li>
+<li><p>Expand the <code class="docutils literal notranslate"><span class="pre">additional</span> <span class="pre">options</span></code> section</p>
+<ol class="arabic simple">
+<li><p>For <em>“metadata”</em>:</p>
+<ul class="simple">
+<li><p>Press the <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">Insert</span> <span class="pre">metadata</span></code> button to set up the next steps.</p>
+<ol class="arabic simple">
+<li><p>Leave as <code class="docutils literal notranslate"><span class="pre">Metadata</span> <span class="pre">from</span> <span class="pre">TSV</span></code></p></li>
+<li><p>Set <em>“Metadata Source”</em> to <code class="docutils literal notranslate"><span class="pre">sample-metadata.tsv</span></code></p></li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>Set <em>“where”</em> to <code class="docutils literal notranslate"><span class="pre">autoFmtGroup</span> <span class="pre">IS</span> <span class="pre">NOT</span> <span class="pre">NULL</span></code></p></li>
+</ol>
+</li>
+<li><p>Press the <code class="docutils literal notranslate"><span class="pre">Execute</span></code> button.</p></li>
+</ol>
+</dd>
+<dt>Once completed, for the new entry in your history, use the <code class="docutils literal notranslate"><span class="pre">Edit</span></code> button to set the name as follows:</dt><dd><p>(Renaming is optional, but it will make any subsequent steps easier to complete.)</p>
+<div class="pst-scrollable-table-container"><table class="table table-left">
+<thead>
+<tr class="row-odd"><th class="head"><p>History Name</p></th>
+<th class="head"><p><em>“Name”</em> to set (be sure to press <code class="docutils literal notranslate"><span class="pre">Save</span></code>)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">#:</span> <span class="pre">qiime2</span> <span class="pre">feature-table</span> <span class="pre">filter-samples</span> <span class="pre">[...]</span> <span class="pre">:</span> <span class="pre">filtered_table.qza</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">autofmt-table.qza</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</dd>
+</dl>
+</div>
+<div class="exec-usage compound" id="usage-28">
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">autofmt-table.qza</span></code><span> | </span><a class="reference external" href="https://view.qiime2.org?src=http%3A%2F%2Flocalhost%3A8000%2Fdata%2F01-exploring-the-data%2Fautofmt-table.qza"><span>view</span></a><span> | </span><a class="reference external" href="http://localhost:8000/data/01-exploring-the-data/autofmt-table.qza"><span>download</span></a></p></li>
+</ul>
+</div>
+<p>Filtering, if we don’t host a filtered table.</p>
+<div class="python3-usage highlight-default notranslate" id="usage-30"><div class="highlight"><pre><span></span><span class="n">autofmt_table_summ_viz</span><span class="p">,</span> <span class="o">=</span> <span class="n">feature_table_actions</span><span class="o">.</span><span class="n">summarize</span><span class="p">(</span>
+    <span class="n">table</span><span class="o">=</span><span class="n">autofmt_table</span><span class="p">,</span>
+    <span class="n">sample_metadata</span><span class="o">=</span><span class="n">sample_metadata_md</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="r-usage highlight-default notranslate" id="usage-31"><div class="highlight"><pre><span></span>action_results &lt;- feature_table_actions$summarize(
+    table=autofmt_table,
+    sample_metadata=sample_metadata_md,
+)
+autofmt_table_summ_viz &lt;- action_results$visualization
+</pre></div>
+</div>
+<div class="cli-usage highlight-default notranslate" id="usage-32"><div class="highlight"><pre><span></span><span class="n">qiime</span> <span class="n">feature</span><span class="o">-</span><span class="n">table</span> <span class="n">summarize</span> \
+  <span class="o">--</span><span class="n">i</span><span class="o">-</span><span class="n">table</span> <span class="n">autofmt</span><span class="o">-</span><span class="n">table</span><span class="o">.</span><span class="n">qza</span> \
+  <span class="o">--</span><span class="n">m</span><span class="o">-</span><span class="n">sample</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">file</span> <span class="n">sample</span><span class="o">-</span><span class="n">metadata</span><span class="o">.</span><span class="n">tsv</span> \
+  <span class="o">--</span><span class="n">o</span><span class="o">-</span><span class="n">visualization</span> <span class="n">autofmt</span><span class="o">-</span><span class="n">table</span><span class="o">-</span><span class="n">summ</span><span class="o">.</span><span class="n">qzv</span>
+</pre></div>
+</div>
+<div class="raw-usage highlight-default notranslate" id="usage-35"><div class="highlight"><pre><span></span><span class="n">use</span><span class="o">.</span><span class="n">action</span><span class="p">(</span>
+    <span class="n">use</span><span class="o">.</span><span class="n">UsageAction</span><span class="p">(</span><span class="n">plugin_id</span><span class="o">=</span><span class="s1">&#39;feature_table&#39;</span><span class="p">,</span> <span class="n">action_id</span><span class="o">=</span><span class="s1">&#39;summarize&#39;</span><span class="p">),</span>
+    <span class="n">use</span><span class="o">.</span><span class="n">UsageInputs</span><span class="p">(</span><span class="n">table</span><span class="o">=</span><span class="n">autofmt_table</span><span class="p">,</span> <span class="n">sample_metadata</span><span class="o">=</span><span class="n">sample_metadata</span><span class="p">),</span>
+    <span class="n">use</span><span class="o">.</span><span class="n">UsageOutputNames</span><span class="p">(</span><span class="n">visualization</span><span class="o">=</span><span class="s1">&#39;autofmt_table_summ&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="galaxy-usage compound" id="usage-33">
+<dl>
+<dt>Using the <code class="docutils literal notranslate"><span class="pre">qiime2</span> <span class="pre">feature-table</span> <span class="pre">summarize</span></code> tool:</dt><dd><ol class="arabic simple">
+<li><p>Set <em>“table”</em> to <code class="docutils literal notranslate"><span class="pre">#:</span> <span class="pre">autofmt-table.qza</span></code></p></li>
+<li><p>Expand the <code class="docutils literal notranslate"><span class="pre">additional</span> <span class="pre">options</span></code> section</p>
+<ul class="simple">
+<li><p>For <em>“sample_metadata”</em>:</p>
+<ul>
+<li><p>Press the <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">Insert</span> <span class="pre">sample_metadata</span></code> button to set up the next steps.</p>
+<ol class="arabic simple">
+<li><p>Leave as <code class="docutils literal notranslate"><span class="pre">Metadata</span> <span class="pre">from</span> <span class="pre">TSV</span></code></p></li>
+<li><p>Set <em>“Metadata Source”</em> to <code class="docutils literal notranslate"><span class="pre">sample-metadata.tsv</span></code></p></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Press the <code class="docutils literal notranslate"><span class="pre">Execute</span></code> button.</p></li>
+</ol>
+</dd>
+<dt>Once completed, for the new entry in your history, use the <code class="docutils literal notranslate"><span class="pre">Edit</span></code> button to set the name as follows:</dt><dd><p>(Renaming is optional, but it will make any subsequent steps easier to complete.)</p>
+<div class="pst-scrollable-table-container"><table class="table table-left">
+<thead>
+<tr class="row-odd"><th class="head"><p>History Name</p></th>
+<th class="head"><p><em>“Name”</em> to set (be sure to press <code class="docutils literal notranslate"><span class="pre">Save</span></code>)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">#:</span> <span class="pre">qiime2</span> <span class="pre">feature-table</span> <span class="pre">summarize</span> <span class="pre">[...]</span> <span class="pre">:</span> <span class="pre">visualization.qzv</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">autofmt-table-summ.qzv</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</dd>
+</dl>
+</div>
+<div class="exec-usage compound" id="usage-34">
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">autofmt-table-summ.qzv</span></code><span> | </span><a class="reference external" href="https://view.qiime2.org?src=http%3A%2F%2Flocalhost%3A8000%2Fdata%2F01-exploring-the-data%2Fautofmt-table-summ.qzv"><span>view</span></a><span> | </span><a class="reference external" href="http://localhost:8000/data/01-exploring-the-data/autofmt-table-summ.qzv"><span>download</span></a></p></li>
+</ul>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="00-set-up.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Setting Up Docker</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02-building-phylogeny.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Phylogenetic tree construction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The QIIME 2 Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023-2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

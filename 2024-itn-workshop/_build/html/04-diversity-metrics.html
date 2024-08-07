@@ -1,0 +1,799 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Computing diversity metrics &#8212; 2024 q2-ITN workshop</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="_static/usage.js?v=858a412f"></script>
+    <script src="_static/external-links.js?v=a7dd342f"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '04-diversity-metrics';</script>
+    <link rel="canonical" href="http://localhost:8000/04-diversity-metrics.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="q2-fmt TODO" href="05-q2-fmt.html" />
+    <link rel="prev" title="Alpha rarefaction plots" href="03-sampling-depth.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="2024 q2-ITN workshop - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="2024 q2-ITN workshop - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-exploring-the-data.html">Exploring the Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-building-phylogeny.html">Phylogenetic tree construction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-sampling-depth.html">Alpha rarefaction plots</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Computing diversity metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-q2-fmt.html">q2-fmt TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-provenance.html">Provenance in QIIME 2</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F04-diversity-metrics.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/04-diversity-metrics.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Computing diversity metrics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-phylogenetic-diversity-metrics">Core phylogenetic diversity metrics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#longitudinal-alpha-diversity-analysis">Longitudinal alpha diversity analysis</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="computing-diversity-metrics">
+<h1>Computing diversity metrics<a class="headerlink" href="#computing-diversity-metrics" title="Link to this heading">#</a></h1>
+<script id="interfaces" type="application/json">{"default": "cli-usage", "available": {"python3-usage": ["Python 3 API (qiime2)", true], "r-usage": ["R API (qiime2)", true], "cli-usage": ["Command Line (q2cli)", true], "galaxy-usage": ["Galaxy (q2galaxy)", true], "raw-usage": ["View Source (qiime2.sdk)", false]}, "classes": [".python3-usage", ".r-usage", ".cli-usage", ".galaxy-usage", ".raw-usage"]}</script><span class="usage-selector"></span><p>The next step that we’ll work through is computing a series of common diversity
+metrics on our feature table. We’ll do this using the <code class="docutils literal notranslate"><span class="pre">q2-diversity</span></code> plugin’s
+<code class="docutils literal notranslate"><span class="pre">core-metrics-phylogenetic</span></code> action. This action is another QIIME 2 pipeline,
+this time combining over ten different actions into a single action.</p>
+<section id="core-phylogenetic-diversity-metrics">
+<h2>Core phylogenetic diversity metrics<a class="headerlink" href="#core-phylogenetic-diversity-metrics" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">core-metrics-phylogenetic</span></code> requires your feature table, your rooted
+phylogenetic tree, and your sample metadata as input. It additionally requires
+that you provide the sampling depth that this analysis will be performed at.
+Determining what value to provide for this parameter is often one of the most
+confusing steps of an analysis for users, and we therefore have devoted
+time to discussing this in the lectures and in the previous chapter. In the
+interest of retaining as many of the samples as possible, we’ll set our
+sampling depth to 10,000 for this analysis.</p>
+<div class="python3-usage highlight-default notranslate" id="usage-0"><div class="highlight"><pre><span></span><span class="n">action_results</span> <span class="o">=</span> <span class="n">diversity_actions</span><span class="o">.</span><span class="n">core_metrics_phylogenetic</span><span class="p">(</span>
+    <span class="n">phylogeny</span><span class="o">=</span><span class="n">rooted_tree</span><span class="p">,</span>
+    <span class="n">table</span><span class="o">=</span><span class="n">autofmt_table</span><span class="p">,</span>
+    <span class="n">sampling_depth</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
+    <span class="n">metadata</span><span class="o">=</span><span class="n">sample_metadata_md</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">rarefied_table</span> <span class="o">=</span> <span class="n">action_results</span><span class="o">.</span><span class="n">rarefied_table</span>
+<span class="n">faith_pd_vector</span> <span class="o">=</span> <span class="n">action_results</span><span class="o">.</span><span class="n">faith_pd_vector</span>
+<span class="n">observed_features_vector</span> <span class="o">=</span> <span class="n">action_results</span><span class="o">.</span><span class="n">observed_features_vector</span>
+<span class="n">shannon_vector</span> <span class="o">=</span> <span class="n">action_results</span><span class="o">.</span><span class="n">shannon_vector</span>
+<span class="n">evenness_vector</span> <span class="o">=</span> <span class="n">action_results</span><span class="o">.</span><span class="n">evenness_vector</span>
+<span class="n">unweighted_unifrac_distance_matrix</span> <span class="o">=</span> <span class="n">action_results</span><span class="o">.</span><span class="n">unweighted_unifrac_distance_matrix</span>
+<span class="n">weighted_unifrac_distance_matrix</span> <span class="o">=</span> <span class="n">action_results</span><span class="o">.</span><span class="n">weighted_unifrac_distance_matrix</span>
+<span class="n">jaccard_distance_matrix</span> <span class="o">=</span> <span class="n">action_results</span><span class="o">.</span><span class="n">jaccard_distance_matrix</span>
+<span class="n">bray_curtis_distance_matrix</span> <span class="o">=</span> <span class="n">action_results</span><span class="o">.</span><span class="n">bray_curtis_distance_matrix</span>
+<span class="n">unweighted_unifrac_pcoa_results</span> <span class="o">=</span> <span class="n">action_results</span><span class="o">.</span><span class="n">unweighted_unifrac_pcoa_results</span>
+<span class="n">weighted_unifrac_pcoa_results</span> <span class="o">=</span> <span class="n">action_results</span><span class="o">.</span><span class="n">weighted_unifrac_pcoa_results</span>
+<span class="n">jaccard_pcoa_results</span> <span class="o">=</span> <span class="n">action_results</span><span class="o">.</span><span class="n">jaccard_pcoa_results</span>
+<span class="n">bray_curtis_pcoa_results</span> <span class="o">=</span> <span class="n">action_results</span><span class="o">.</span><span class="n">bray_curtis_pcoa_results</span>
+<span class="n">unweighted_unifrac_emperor_viz</span> <span class="o">=</span> <span class="n">action_results</span><span class="o">.</span><span class="n">unweighted_unifrac_emperor</span>
+<span class="n">weighted_unifrac_emperor_viz</span> <span class="o">=</span> <span class="n">action_results</span><span class="o">.</span><span class="n">weighted_unifrac_emperor</span>
+<span class="n">jaccard_emperor_viz</span> <span class="o">=</span> <span class="n">action_results</span><span class="o">.</span><span class="n">jaccard_emperor</span>
+<span class="n">bray_curtis_emperor_viz</span> <span class="o">=</span> <span class="n">action_results</span><span class="o">.</span><span class="n">bray_curtis_emperor</span>
+</pre></div>
+</div>
+<div class="r-usage highlight-default notranslate" id="usage-1"><div class="highlight"><pre><span></span>action_results &lt;- diversity_actions$core_metrics_phylogenetic(
+    phylogeny=rooted_tree,
+    table=autofmt_table,
+    sampling_depth=10000L,
+    metadata=sample_metadata_md,
+)
+rarefied_table &lt;- action_results$rarefied_table
+faith_pd_vector &lt;- action_results$faith_pd_vector
+observed_features_vector &lt;- action_results$observed_features_vector
+shannon_vector &lt;- action_results$shannon_vector
+evenness_vector &lt;- action_results$evenness_vector
+unweighted_unifrac_distance_matrix &lt;- action_results$unweighted_unifrac_distance_matrix
+weighted_unifrac_distance_matrix &lt;- action_results$weighted_unifrac_distance_matrix
+jaccard_distance_matrix &lt;- action_results$jaccard_distance_matrix
+bray_curtis_distance_matrix &lt;- action_results$bray_curtis_distance_matrix
+unweighted_unifrac_pcoa_results &lt;- action_results$unweighted_unifrac_pcoa_results
+weighted_unifrac_pcoa_results &lt;- action_results$weighted_unifrac_pcoa_results
+jaccard_pcoa_results &lt;- action_results$jaccard_pcoa_results
+bray_curtis_pcoa_results &lt;- action_results$bray_curtis_pcoa_results
+unweighted_unifrac_emperor_viz &lt;- action_results$unweighted_unifrac_emperor
+weighted_unifrac_emperor_viz &lt;- action_results$weighted_unifrac_emperor
+jaccard_emperor_viz &lt;- action_results$jaccard_emperor
+bray_curtis_emperor_viz &lt;- action_results$bray_curtis_emperor
+</pre></div>
+</div>
+<div class="cli-usage highlight-default notranslate" id="usage-2"><div class="highlight"><pre><span></span><span class="n">qiime</span> <span class="n">diversity</span> <span class="n">core</span><span class="o">-</span><span class="n">metrics</span><span class="o">-</span><span class="n">phylogenetic</span> \
+  <span class="o">--</span><span class="n">i</span><span class="o">-</span><span class="n">phylogeny</span> <span class="n">phylogeny</span><span class="o">-</span><span class="n">align</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">tree</span><span class="o">-</span><span class="n">mafft</span><span class="o">-</span><span class="n">fasttree</span><span class="o">/</span><span class="n">rooted_tree</span><span class="o">.</span><span class="n">qza</span> \
+  <span class="o">--</span><span class="n">i</span><span class="o">-</span><span class="n">table</span> <span class="n">autofmt</span><span class="o">-</span><span class="n">table</span><span class="o">.</span><span class="n">qza</span> \
+  <span class="o">--</span><span class="n">p</span><span class="o">-</span><span class="n">sampling</span><span class="o">-</span><span class="n">depth</span> <span class="mi">10000</span> \
+  <span class="o">--</span><span class="n">m</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">file</span> <span class="n">sample</span><span class="o">-</span><span class="n">metadata</span><span class="o">.</span><span class="n">tsv</span> \
+  <span class="o">--</span><span class="n">output</span><span class="o">-</span><span class="nb">dir</span> <span class="n">diversity</span><span class="o">-</span><span class="n">core</span><span class="o">-</span><span class="n">metrics</span><span class="o">-</span><span class="n">phylogenetic</span>
+</pre></div>
+</div>
+<div class="raw-usage highlight-default notranslate" id="usage-5"><div class="highlight"><pre><span></span><span class="n">core_metrics_results</span> <span class="o">=</span> <span class="n">use</span><span class="o">.</span><span class="n">action</span><span class="p">(</span>
+    <span class="n">use</span><span class="o">.</span><span class="n">UsageAction</span><span class="p">(</span><span class="n">plugin_id</span><span class="o">=</span><span class="s1">&#39;diversity&#39;</span><span class="p">,</span> <span class="n">action_id</span><span class="o">=</span><span class="s1">&#39;core_metrics_phylogenetic&#39;</span><span class="p">),</span>
+    <span class="n">use</span><span class="o">.</span><span class="n">UsageInputs</span><span class="p">(</span><span class="n">phylogeny</span><span class="o">=</span><span class="n">rooted_tree</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="n">autofmt_table</span><span class="p">,</span>
+                    <span class="n">sampling_depth</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">sample_metadata</span><span class="p">),</span>
+    <span class="n">use</span><span class="o">.</span><span class="n">UsageOutputNames</span><span class="p">(</span><span class="n">rarefied_table</span><span class="o">=</span><span class="s1">&#39;rarefied_table&#39;</span><span class="p">,</span>
+                            <span class="n">faith_pd_vector</span><span class="o">=</span><span class="s1">&#39;faith_pd_vector&#39;</span><span class="p">,</span>
+                            <span class="n">observed_features_vector</span><span class="o">=</span><span class="s1">&#39;observed_features_vector&#39;</span><span class="p">,</span>
+                            <span class="n">shannon_vector</span><span class="o">=</span><span class="s1">&#39;shannon_vector&#39;</span><span class="p">,</span>
+                            <span class="n">evenness_vector</span><span class="o">=</span><span class="s1">&#39;evenness_vector&#39;</span><span class="p">,</span>
+                            <span class="n">unweighted_unifrac_distance_matrix</span><span class="o">=</span><span class="s1">&#39;unweighted_unifrac_distance_matrix&#39;</span><span class="p">,</span>
+                            <span class="n">weighted_unifrac_distance_matrix</span><span class="o">=</span><span class="s1">&#39;weighted_unifrac_distance_matrix&#39;</span><span class="p">,</span>
+                            <span class="n">jaccard_distance_matrix</span><span class="o">=</span><span class="s1">&#39;jaccard_distance_matrix&#39;</span><span class="p">,</span>
+                            <span class="n">bray_curtis_distance_matrix</span><span class="o">=</span><span class="s1">&#39;bray_curtis_distance_matrix&#39;</span><span class="p">,</span>
+                            <span class="n">unweighted_unifrac_pcoa_results</span><span class="o">=</span><span class="s1">&#39;unweighted_unifrac_pcoa_results&#39;</span><span class="p">,</span>
+                            <span class="n">weighted_unifrac_pcoa_results</span><span class="o">=</span><span class="s1">&#39;weighted_unifrac_pcoa_results&#39;</span><span class="p">,</span>
+                            <span class="n">jaccard_pcoa_results</span><span class="o">=</span><span class="s1">&#39;jaccard_pcoa_results&#39;</span><span class="p">,</span>
+                            <span class="n">bray_curtis_pcoa_results</span><span class="o">=</span><span class="s1">&#39;bray_curtis_pcoa_results&#39;</span><span class="p">,</span>
+                            <span class="n">unweighted_unifrac_emperor</span><span class="o">=</span><span class="s1">&#39;unweighted_unifrac_emperor&#39;</span><span class="p">,</span>
+                            <span class="n">weighted_unifrac_emperor</span><span class="o">=</span><span class="s1">&#39;weighted_unifrac_emperor&#39;</span><span class="p">,</span>
+                            <span class="n">jaccard_emperor</span><span class="o">=</span><span class="s1">&#39;jaccard_emperor&#39;</span><span class="p">,</span>
+                            <span class="n">bray_curtis_emperor</span><span class="o">=</span><span class="s1">&#39;bray_curtis_emperor&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="galaxy-usage compound" id="usage-3">
+<dl class="simple">
+<dt>Using the <code class="docutils literal notranslate"><span class="pre">qiime2</span> <span class="pre">diversity</span> <span class="pre">core-metrics-phylogenetic</span></code> tool:</dt><dd><ol class="arabic simple">
+<li><p>Set <em>“table”</em> to <code class="docutils literal notranslate"><span class="pre">#:</span> <span class="pre">autofmt-table.qza</span></code></p></li>
+<li><p>Set <em>“phylogeny”</em> to <code class="docutils literal notranslate"><span class="pre">#:</span> <span class="pre">rooted-tree.qza</span></code></p></li>
+<li><p>Set <em>“sampling_depth”</em> to <code class="docutils literal notranslate"><span class="pre">10000</span></code></p></li>
+<li><p>For <em>“metadata”</em>:</p>
+<ul class="simple">
+<li><p>Perform the following steps.</p>
+<ol class="arabic simple">
+<li><p>Leave as <code class="docutils literal notranslate"><span class="pre">Metadata</span> <span class="pre">from</span> <span class="pre">TSV</span></code></p></li>
+<li><p>Set <em>“Metadata Source”</em> to <code class="docutils literal notranslate"><span class="pre">sample-metadata.tsv</span></code></p></li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>Press the <code class="docutils literal notranslate"><span class="pre">Execute</span></code> button.</p></li>
+</ol>
+</dd>
+</dl>
+</div>
+<div class="exec-usage compound" id="usage-4">
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">diversity-core-metrics-phylogenetic/rarefied_table.qza</span></code><span> | </span><a class="reference external" href="https://view.qiime2.org?src=http%3A%2F%2Flocalhost%3A8000%2Fdata%2F04-diversity-metrics%2Fdiversity-core-metrics-phylogenetic%2Frarefied_table.qza"><span>view</span></a><span> | </span><a class="reference external" href="http://localhost:8000/data/04-diversity-metrics/diversity-core-metrics-phylogenetic/rarefied_table.qza"><span>download</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">diversity-core-metrics-phylogenetic/faith_pd_vector.qza</span></code><span> | </span><a class="reference external" href="https://view.qiime2.org?src=http%3A%2F%2Flocalhost%3A8000%2Fdata%2F04-diversity-metrics%2Fdiversity-core-metrics-phylogenetic%2Ffaith_pd_vector.qza"><span>view</span></a><span> | </span><a class="reference external" href="http://localhost:8000/data/04-diversity-metrics/diversity-core-metrics-phylogenetic/faith_pd_vector.qza"><span>download</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">diversity-core-metrics-phylogenetic/observed_features_vector.qza</span></code><span> | </span><a class="reference external" href="https://view.qiime2.org?src=http%3A%2F%2Flocalhost%3A8000%2Fdata%2F04-diversity-metrics%2Fdiversity-core-metrics-phylogenetic%2Fobserved_features_vector.qza"><span>view</span></a><span> | </span><a class="reference external" href="http://localhost:8000/data/04-diversity-metrics/diversity-core-metrics-phylogenetic/observed_features_vector.qza"><span>download</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">diversity-core-metrics-phylogenetic/shannon_vector.qza</span></code><span> | </span><a class="reference external" href="https://view.qiime2.org?src=http%3A%2F%2Flocalhost%3A8000%2Fdata%2F04-diversity-metrics%2Fdiversity-core-metrics-phylogenetic%2Fshannon_vector.qza"><span>view</span></a><span> | </span><a class="reference external" href="http://localhost:8000/data/04-diversity-metrics/diversity-core-metrics-phylogenetic/shannon_vector.qza"><span>download</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">diversity-core-metrics-phylogenetic/evenness_vector.qza</span></code><span> | </span><a class="reference external" href="https://view.qiime2.org?src=http%3A%2F%2Flocalhost%3A8000%2Fdata%2F04-diversity-metrics%2Fdiversity-core-metrics-phylogenetic%2Fevenness_vector.qza"><span>view</span></a><span> | </span><a class="reference external" href="http://localhost:8000/data/04-diversity-metrics/diversity-core-metrics-phylogenetic/evenness_vector.qza"><span>download</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">diversity-core-metrics-phylogenetic/unweighted_unifrac_distance_matrix.qza</span></code><span> | </span><a class="reference external" href="https://view.qiime2.org?src=http%3A%2F%2Flocalhost%3A8000%2Fdata%2F04-diversity-metrics%2Fdiversity-core-metrics-phylogenetic%2Funweighted_unifrac_distance_matrix.qza"><span>view</span></a><span> | </span><a class="reference external" href="http://localhost:8000/data/04-diversity-metrics/diversity-core-metrics-phylogenetic/unweighted_unifrac_distance_matrix.qza"><span>download</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">diversity-core-metrics-phylogenetic/weighted_unifrac_distance_matrix.qza</span></code><span> | </span><a class="reference external" href="https://view.qiime2.org?src=http%3A%2F%2Flocalhost%3A8000%2Fdata%2F04-diversity-metrics%2Fdiversity-core-metrics-phylogenetic%2Fweighted_unifrac_distance_matrix.qza"><span>view</span></a><span> | </span><a class="reference external" href="http://localhost:8000/data/04-diversity-metrics/diversity-core-metrics-phylogenetic/weighted_unifrac_distance_matrix.qza"><span>download</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">diversity-core-metrics-phylogenetic/jaccard_distance_matrix.qza</span></code><span> | </span><a class="reference external" href="https://view.qiime2.org?src=http%3A%2F%2Flocalhost%3A8000%2Fdata%2F04-diversity-metrics%2Fdiversity-core-metrics-phylogenetic%2Fjaccard_distance_matrix.qza"><span>view</span></a><span> | </span><a class="reference external" href="http://localhost:8000/data/04-diversity-metrics/diversity-core-metrics-phylogenetic/jaccard_distance_matrix.qza"><span>download</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">diversity-core-metrics-phylogenetic/bray_curtis_distance_matrix.qza</span></code><span> | </span><a class="reference external" href="https://view.qiime2.org?src=http%3A%2F%2Flocalhost%3A8000%2Fdata%2F04-diversity-metrics%2Fdiversity-core-metrics-phylogenetic%2Fbray_curtis_distance_matrix.qza"><span>view</span></a><span> | </span><a class="reference external" href="http://localhost:8000/data/04-diversity-metrics/diversity-core-metrics-phylogenetic/bray_curtis_distance_matrix.qza"><span>download</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">diversity-core-metrics-phylogenetic/unweighted_unifrac_pcoa_results.qza</span></code><span> | </span><a class="reference external" href="https://view.qiime2.org?src=http%3A%2F%2Flocalhost%3A8000%2Fdata%2F04-diversity-metrics%2Fdiversity-core-metrics-phylogenetic%2Funweighted_unifrac_pcoa_results.qza"><span>view</span></a><span> | </span><a class="reference external" href="http://localhost:8000/data/04-diversity-metrics/diversity-core-metrics-phylogenetic/unweighted_unifrac_pcoa_results.qza"><span>download</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">diversity-core-metrics-phylogenetic/weighted_unifrac_pcoa_results.qza</span></code><span> | </span><a class="reference external" href="https://view.qiime2.org?src=http%3A%2F%2Flocalhost%3A8000%2Fdata%2F04-diversity-metrics%2Fdiversity-core-metrics-phylogenetic%2Fweighted_unifrac_pcoa_results.qza"><span>view</span></a><span> | </span><a class="reference external" href="http://localhost:8000/data/04-diversity-metrics/diversity-core-metrics-phylogenetic/weighted_unifrac_pcoa_results.qza"><span>download</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">diversity-core-metrics-phylogenetic/jaccard_pcoa_results.qza</span></code><span> | </span><a class="reference external" href="https://view.qiime2.org?src=http%3A%2F%2Flocalhost%3A8000%2Fdata%2F04-diversity-metrics%2Fdiversity-core-metrics-phylogenetic%2Fjaccard_pcoa_results.qza"><span>view</span></a><span> | </span><a class="reference external" href="http://localhost:8000/data/04-diversity-metrics/diversity-core-metrics-phylogenetic/jaccard_pcoa_results.qza"><span>download</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">diversity-core-metrics-phylogenetic/bray_curtis_pcoa_results.qza</span></code><span> | </span><a class="reference external" href="https://view.qiime2.org?src=http%3A%2F%2Flocalhost%3A8000%2Fdata%2F04-diversity-metrics%2Fdiversity-core-metrics-phylogenetic%2Fbray_curtis_pcoa_results.qza"><span>view</span></a><span> | </span><a class="reference external" href="http://localhost:8000/data/04-diversity-metrics/diversity-core-metrics-phylogenetic/bray_curtis_pcoa_results.qza"><span>download</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">diversity-core-metrics-phylogenetic/unweighted_unifrac_emperor.qzv</span></code><span> | </span><a class="reference external" href="https://view.qiime2.org?src=http%3A%2F%2Flocalhost%3A8000%2Fdata%2F04-diversity-metrics%2Fdiversity-core-metrics-phylogenetic%2Funweighted_unifrac_emperor.qzv"><span>view</span></a><span> | </span><a class="reference external" href="http://localhost:8000/data/04-diversity-metrics/diversity-core-metrics-phylogenetic/unweighted_unifrac_emperor.qzv"><span>download</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">diversity-core-metrics-phylogenetic/weighted_unifrac_emperor.qzv</span></code><span> | </span><a class="reference external" href="https://view.qiime2.org?src=http%3A%2F%2Flocalhost%3A8000%2Fdata%2F04-diversity-metrics%2Fdiversity-core-metrics-phylogenetic%2Fweighted_unifrac_emperor.qzv"><span>view</span></a><span> | </span><a class="reference external" href="http://localhost:8000/data/04-diversity-metrics/diversity-core-metrics-phylogenetic/weighted_unifrac_emperor.qzv"><span>download</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">diversity-core-metrics-phylogenetic/jaccard_emperor.qzv</span></code><span> | </span><a class="reference external" href="https://view.qiime2.org?src=http%3A%2F%2Flocalhost%3A8000%2Fdata%2F04-diversity-metrics%2Fdiversity-core-metrics-phylogenetic%2Fjaccard_emperor.qzv"><span>view</span></a><span> | </span><a class="reference external" href="http://localhost:8000/data/04-diversity-metrics/diversity-core-metrics-phylogenetic/jaccard_emperor.qzv"><span>download</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">diversity-core-metrics-phylogenetic/bray_curtis_emperor.qzv</span></code><span> | </span><a class="reference external" href="https://view.qiime2.org?src=http%3A%2F%2Flocalhost%3A8000%2Fdata%2F04-diversity-metrics%2Fdiversity-core-metrics-phylogenetic%2Fbray_curtis_emperor.qzv"><span>view</span></a><span> | </span><a class="reference external" href="http://localhost:8000/data/04-diversity-metrics/diversity-core-metrics-phylogenetic/bray_curtis_emperor.qzv"><span>download</span></a></p></li>
+</ul>
+</div>
+<p>As you can see, this command generates many outputs including both QIIME 2
+artifacts and visualizations. You can take a look at the visualizations that are
+generated now.</p>
+</section>
+<section id="longitudinal-alpha-diversity-analysis">
+<h2>Longitudinal alpha diversity analysis<a class="headerlink" href="#longitudinal-alpha-diversity-analysis" title="Link to this heading">#</a></h2>
+<p>In this section of the tutorial we’ll perform several analyses using QIIME 2’s
+<code class="docutils literal notranslate"><span class="pre">q2-longitudinal</span></code> <span id="id1">[]</span> plugin. These will allow us
+to track microbiome changes across time on a per-subject basis.</p>
+<p>this next command will allow us to ask a more targeted question:
+Did an FMT treatment help individuals recover alpha diversity.</p>
+<p>By adding the <code class="docutils literal notranslate"><span class="pre">autoFmtGroup</span></code> to our linear model, we can see if there
+are different slopes for the two groups, based on an <em>interaction term</em>.</p>
+<div class="python3-usage highlight-default notranslate" id="usage-6"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">qiime2.plugins.longitudinal.actions</span> <span class="k">as</span> <span class="nn">longitudinal_actions</span>
+
+<span class="n">md_observed_features_md</span> <span class="o">=</span> <span class="n">observed_features_vector</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">Metadata</span><span class="p">)</span>
+<span class="n">merged_observed_features_md</span> <span class="o">=</span> <span class="n">sample_metadata_md</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">md_observed_features_md</span><span class="p">)</span>
+<span class="n">lme_obs_features_treatmentVScontrol_viz</span><span class="p">,</span> <span class="o">=</span> <span class="n">longitudinal_actions</span><span class="o">.</span><span class="n">linear_mixed_effects</span><span class="p">(</span>
+    <span class="n">metadata</span><span class="o">=</span><span class="n">merged_observed_features_md</span><span class="p">,</span>
+    <span class="n">state_column</span><span class="o">=</span><span class="s1">&#39;day-relative-to-fmt&#39;</span><span class="p">,</span>
+    <span class="n">group_columns</span><span class="o">=</span><span class="s1">&#39;autoFmtGroup&#39;</span><span class="p">,</span>
+    <span class="n">individual_id_column</span><span class="o">=</span><span class="s1">&#39;PatientID&#39;</span><span class="p">,</span>
+    <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;observed_features&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="r-usage highlight-default notranslate" id="usage-7"><div class="highlight"><pre><span></span>longitudinal_actions &lt;- import(&quot;qiime2.plugins.longitudinal.actions&quot;)
+
+md_observed_features_md &lt;- observed_features_vector$view(Metadata)
+merged_observed_features_md &lt;- sample_metadata_md$merge(md_observed_features_md)
+action_results &lt;- longitudinal_actions$linear_mixed_effects(
+    metadata=merged_observed_features_md,
+    state_column=&#39;day-relative-to-fmt&#39;,
+    group_columns=&#39;autoFmtGroup&#39;,
+    individual_id_column=&#39;PatientID&#39;,
+    metric=&#39;observed_features&#39;,
+)
+lme_obs_features_treatmentVScontrol_viz &lt;- action_results$visualization
+</pre></div>
+</div>
+<div class="cli-usage highlight-default notranslate" id="usage-8"><div class="highlight"><pre><span></span><span class="n">qiime</span> <span class="n">longitudinal</span> <span class="n">linear</span><span class="o">-</span><span class="n">mixed</span><span class="o">-</span><span class="n">effects</span> \
+  <span class="o">--</span><span class="n">m</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">file</span> <span class="n">sample</span><span class="o">-</span><span class="n">metadata</span><span class="o">.</span><span class="n">tsv</span> <span class="n">diversity</span><span class="o">-</span><span class="n">core</span><span class="o">-</span><span class="n">metrics</span><span class="o">-</span><span class="n">phylogenetic</span><span class="o">/</span><span class="n">observed_features_vector</span><span class="o">.</span><span class="n">qza</span> \
+  <span class="o">--</span><span class="n">p</span><span class="o">-</span><span class="n">state</span><span class="o">-</span><span class="n">column</span> <span class="n">day</span><span class="o">-</span><span class="n">relative</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">fmt</span> \
+  <span class="o">--</span><span class="n">p</span><span class="o">-</span><span class="n">group</span><span class="o">-</span><span class="n">columns</span> <span class="n">autoFmtGroup</span> \
+  <span class="o">--</span><span class="n">p</span><span class="o">-</span><span class="n">individual</span><span class="o">-</span><span class="nb">id</span><span class="o">-</span><span class="n">column</span> <span class="n">PatientID</span> \
+  <span class="o">--</span><span class="n">p</span><span class="o">-</span><span class="n">metric</span> <span class="n">observed_features</span> \
+  <span class="o">--</span><span class="n">o</span><span class="o">-</span><span class="n">visualization</span> <span class="n">lme</span><span class="o">-</span><span class="n">obs</span><span class="o">-</span><span class="n">features</span><span class="o">-</span><span class="n">treatmentVScontrol</span><span class="o">.</span><span class="n">qzv</span>
+</pre></div>
+</div>
+<div class="raw-usage highlight-default notranslate" id="usage-11"><div class="highlight"><pre><span></span><span class="n">md_observed_features</span> <span class="o">=</span> <span class="n">use</span><span class="o">.</span><span class="n">view_as_metadata</span><span class="p">(</span>
+    <span class="s1">&#39;md_observed_features&#39;</span><span class="p">,</span>
+     <span class="n">core_metrics_results</span><span class="o">.</span><span class="n">observed_features_vector</span><span class="p">)</span>
+
+<span class="n">merged_observed_features</span> <span class="o">=</span> <span class="n">use</span><span class="o">.</span><span class="n">merge_metadata</span><span class="p">(</span>
+    <span class="s1">&#39;merged_observed_features&#39;</span><span class="p">,</span>
+    <span class="n">sample_metadata</span><span class="p">,</span>
+    <span class="n">md_observed_features</span><span class="p">)</span>
+
+<span class="n">use</span><span class="o">.</span><span class="n">action</span><span class="p">(</span>
+    <span class="n">use</span><span class="o">.</span><span class="n">UsageAction</span><span class="p">(</span><span class="s1">&#39;longitudinal&#39;</span><span class="p">,</span> <span class="s1">&#39;linear_mixed_effects&#39;</span><span class="p">),</span>
+    <span class="n">use</span><span class="o">.</span><span class="n">UsageInputs</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="n">merged_observed_features</span><span class="p">,</span>
+                    <span class="n">state_column</span><span class="o">=</span><span class="s1">&#39;day-relative-to-fmt&#39;</span><span class="p">,</span>
+                    <span class="n">group_columns</span><span class="o">=</span><span class="s1">&#39;autoFmtGroup&#39;</span><span class="p">,</span>
+                    <span class="n">individual_id_column</span><span class="o">=</span><span class="s1">&#39;PatientID&#39;</span><span class="p">,</span>
+                    <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;observed_features&#39;</span><span class="p">),</span>
+    <span class="n">use</span><span class="o">.</span><span class="n">UsageOutputNames</span><span class="p">(</span><span class="n">visualization</span><span class="o">=</span><span class="s1">&#39;lme-obs-features-treatmentVScontrol&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="galaxy-usage compound" id="usage-9">
+<dl>
+<dt>Using the <code class="docutils literal notranslate"><span class="pre">qiime2</span> <span class="pre">longitudinal</span> <span class="pre">linear-mixed-effects</span></code> tool:</dt><dd><ol class="arabic simple">
+<li><p>For <em>“metadata”</em>:</p>
+<ol class="arabic simple">
+<li><p>Perform the following steps.</p>
+<ol class="arabic simple">
+<li><p>Leave as <code class="docutils literal notranslate"><span class="pre">Metadata</span> <span class="pre">from</span> <span class="pre">TSV</span></code></p></li>
+<li><p>Set <em>“Metadata Source”</em> to <code class="docutils literal notranslate"><span class="pre">sample-metadata.tsv</span></code></p></li>
+</ol>
+</li>
+<li><p>Press the <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">Insert</span> <span class="pre">metadata</span></code> button to set up the next steps.</p>
+<ol class="arabic simple">
+<li><p>Change to <code class="docutils literal notranslate"><span class="pre">Metadata</span> <span class="pre">from</span> <span class="pre">Artifact</span></code></p></li>
+<li><p>Set <em>“Metadata Source”</em> to <code class="docutils literal notranslate"><span class="pre">qiime2</span> <span class="pre">diversity</span> <span class="pre">core-metrics-phylogenetic</span> <span class="pre">[...]</span> <span class="pre">:</span> <span class="pre">observed_features_vector.qza</span></code></p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Set <em>“state_column”</em> to <code class="docutils literal notranslate"><span class="pre">day-relative-to-fmt</span></code></p></li>
+<li><p>Set <em>“individual_id_column”</em> to <code class="docutils literal notranslate"><span class="pre">PatientID</span></code></p></li>
+<li><p>Expand the <code class="docutils literal notranslate"><span class="pre">additional</span> <span class="pre">options</span></code> section</p>
+<ol class="arabic simple">
+<li><p>Set <em>“metric”</em> to <code class="docutils literal notranslate"><span class="pre">observed_features</span></code></p></li>
+<li><p>Set <em>“group_columns”</em> to <code class="docutils literal notranslate"><span class="pre">autoFmtGroup</span></code></p></li>
+</ol>
+</li>
+<li><p>Press the <code class="docutils literal notranslate"><span class="pre">Execute</span></code> button.</p></li>
+</ol>
+</dd>
+<dt>Once completed, for the new entry in your history, use the <code class="docutils literal notranslate"><span class="pre">Edit</span></code> button to set the name as follows:</dt><dd><p>(Renaming is optional, but it will make any subsequent steps easier to complete.)</p>
+<div class="pst-scrollable-table-container"><table class="table table-left">
+<thead>
+<tr class="row-odd"><th class="head"><p>History Name</p></th>
+<th class="head"><p><em>“Name”</em> to set (be sure to press <code class="docutils literal notranslate"><span class="pre">Save</span></code>)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">#:</span> <span class="pre">qiime2</span> <span class="pre">longitudinal</span> <span class="pre">linear-mixed-effects</span> <span class="pre">[...]</span> <span class="pre">:</span> <span class="pre">visualization.qzv</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lme-obs-features-treatmentVScontrol.qzv</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</dd>
+</dl>
+</div>
+<div class="exec-usage compound" id="usage-10">
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">lme-obs-features-treatmentVScontrol.qzv</span></code><span> | </span><a class="reference external" href="https://view.qiime2.org?src=http%3A%2F%2Flocalhost%3A8000%2Fdata%2F04-diversity-metrics%2Flme-obs-features-treatmentVScontrol.qzv"><span>view</span></a><span> | </span><a class="reference external" href="http://localhost:8000/data/04-diversity-metrics/lme-obs-features-treatmentVScontrol.qzv"><span>download</span></a></p></li>
+</ul>
+</div>
+<p>Here we see that the <code class="docutils literal notranslate"><span class="pre">autoFmtGroup</span></code> is not on its own a significant predictor
+of richness, but its interaction term with <code class="docutils literal notranslate"><span class="pre">Q('day-relative-to-fmt')</span></code> is.
+This implies that there are different slopes between these groups, and we note
+that given the coding of <code class="docutils literal notranslate"><span class="pre">Q('day-relative-to-fmt'):autoFmtGroup[T.treatment]</span></code>
+we have a positive coefficient which counteracts (to a degree) the negative
+coefficient of <code class="docutils literal notranslate"><span class="pre">Q('day-relative-to-fmt')</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The slopes of the regression scatterplot in this visualization are not the
+same fit as our mixed-effects model in the table. They are a naive OLS fit to
+give a sense of the situation. A proper visualization would be a partial
+regression plot which can condition on other terms to show some effect in
+“isolation”. This is not currently implemented in QIIME 2.</p>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03-sampling-depth.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Alpha rarefaction plots</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05-q2-fmt.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">q2-fmt TODO</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-phylogenetic-diversity-metrics">Core phylogenetic diversity metrics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#longitudinal-alpha-diversity-analysis">Longitudinal alpha diversity analysis</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The QIIME 2 Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023-2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
