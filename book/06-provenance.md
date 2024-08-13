@@ -15,7 +15,7 @@ default-interface: cli-usage
 ## Wrapping up: what did you do five days ago?
 
 ```{exercise}
-:label: q6
+:label: q1
 
 We're now getting close to the end of our analysis. Over the course of the
 tutorial we've applied multiple filtering steps to our feature table, and if
@@ -29,8 +29,8 @@ describe all filtering steps that were applied to the feature table in the
 order that we applied them.
 ```
 
-```{solution} q6
-:label: q6-solution
+```{solution} q1
+:label: q1-solution
 :class: dropdown
 
 This information is contained in the provenance of the artifacts
@@ -50,4 +50,6 @@ qiime tools replay-provenance \
 
 Thankfully QIIME 2's data provenance tracking
 system keeps track of it all for us in case we forget.
+
+```{bibliography}
 ```
