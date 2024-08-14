@@ -13,7 +13,7 @@ default-interface: cli-usage
 ## Access the study metadata
 
 To begin our work with QIIME 2 and the tutorial data we will
-start by downloading the metadata, generating a summary of it, and exploring
+start by downloading the metadata, generating a summary, and exploring
 that summary.
 
 First, download the metadata.
@@ -46,6 +46,7 @@ sample_metadata = use.init_metadata('sample_metadata',
 
 ```
 
+Next, we’ll get a view of the study metadata as QIIME 2 sees it. This will allow you to assess whether the metadata that QIIME 2 is using is as you expect. You can do this using the tabulate action in QIIME 2’s q2-metadata plugin as follows.
 
 ```{usage}
 use.action(
@@ -55,11 +56,19 @@ use.action(
 )
 ```
 
-We could download this file but that means we will have to filter 
-otherwise we need to host the autofmt group feature table 
+## Filter the feature table to the autoFMT study samples
+
+In this tutorial, we're going to work specifically with samples that were
+included in the autoFMT randomized trial.
+
+To save time we will be working with the feature table that has already been filtered to remove samples that are not part of the autoFMT study. These samples were identified using the metadata in QIIME 2.
+Specifically, samples that do not contain a value in the autoFmtGroup column in the metadata were removed.
+
+Now we will run feature-table summarize 
+
 ```{usage}
 
-feature_table_url = 'https://data.qiime2.org/2024.5/tutorials/liao/full-feature-table.qza'
+feature_table_url = 'https://qiime2-workshops.s3.us-west-2.amazonaws.com/itn-aug2024/autofmt-table.qza'
 
 def artifact_from_url(url):
     def factory():
@@ -77,21 +86,11 @@ def artifact_from_url(url):
         return result
     return factory
 
-feature_table = use.init_artifact(
+autofmt_table = use.init_artifact(
         'feature-table',
         artifact_from_url(feature_table_url))
 
 ```
-
-```{usage}
-autofmt_table, = use.action(
-    use.UsageAction(plugin_id='feature_table', action_id='filter_samples'),
-    use.UsageInputs(table=feature_table, metadata=sample_metadata),
-    use.UsageOutputNames(filtered_table='autofmt_table')
-)
-```
-
-Filtering, if we don't host a filtered table. 
 
 ```{usage}
 use.action(
