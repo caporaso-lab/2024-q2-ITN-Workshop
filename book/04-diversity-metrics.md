@@ -25,10 +25,28 @@ that you provide the sampling depth that this analysis will be performed at.
 Determining what value to provide for this parameter is often one of the most
 confusing steps of an analysis for users, and we therefore have devoted
 time to discussing this in the lectures and in the previous chapter. In the
-interest of retaining as many of the samples as possible, we'll set our
-sampling depth to 10,000 for this analysis.
+interest of retaining as many of the samples as
 
 ```{usage}
+core_metrics_results = use.action(
+    use.UsageAction(plugin_id='diversity', action_id='core_metrics'),
+    use.UsageInputs(table=autofmt_table,
+                    sampling_depth=10000, metadata=sample_metadata),
+    use.UsageOutputNames(rarefied_table='rarefied_table',
+                            observed_features_vector='observed_features_vector',
+                            shannon_vector='shannon_vector',
+                            evenness_vector='evenness_vector',
+                            jaccard_distance_matrix='jaccard_distance_matrix',
+                            bray_curtis_distance_matrix='bray_curtis_distance_matrix',
+                            jaccard_pcoa_results='jaccard_pcoa_results',
+                            bray_curtis_pcoa_results='bray_curtis_pcoa_results',
+                            jaccard_emperor='jaccard_emperor',
+                            bray_curtis_emperor='bray_curtis_emperor'),
+)
+```
+
+
+```
 core_metrics_results = use.action(
     use.UsageAction(plugin_id='diversity', action_id='core_metrics_phylogenetic'),
     use.UsageInputs(phylogeny=rooted_tree, table=autofmt_table,
@@ -50,6 +68,29 @@ core_metrics_results = use.action(
                             weighted_unifrac_emperor='weighted_unifrac_emperor',
                             jaccard_emperor='jaccard_emperor',
                             bray_curtis_emperor='bray_curtis_emperor'),
+)
+
+```
+
+```{usage}
+use.action(
+    use.UsageAction('fmt', 'cc'),
+    use.UsageInputs(
+        diversity_measure=core_metrics_results.jaccard_distance_matrix,
+        metadata=sample_metadata,
+        distance_to='donor',
+        compare='baseline',
+        time_column='timepoints',
+        reference_column='DonorSampleID',
+        subject_column='PatientID',
+        filter_missing_references=True,
+        against_group='0',
+        p_val_approx='asymptotic'
+    ),
+    use.UsageOutputNames(
+        stats='stats',
+        raincloud_plot='raincloud_plot'
+    )
 )
 ```
 

@@ -41,7 +41,7 @@ next - specifically for computing phylogenetically aware diversity metrics.
 While output artifacts will be available for each of these steps, we'll only
 use the rooted phylogenetic tree later.
 
-```{usage}
+```
 _, _, _, rooted_tree = use.action(
     use.UsageAction(plugin_id='phylogeny',
                     action_id='align_to_tree_mafft_fasttree'),

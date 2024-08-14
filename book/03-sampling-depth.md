@@ -1,4 +1,4 @@
-
+# Selecting an Even Sampling Depth
 ```{usage-scope}
 ---
 name: tutorial
