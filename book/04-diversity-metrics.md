@@ -72,28 +72,6 @@ core_metrics_results = use.action(
 
 ```
 
-```{usage}
-use.action(
-    use.UsageAction('fmt', 'cc'),
-    use.UsageInputs(
-        diversity_measure=core_metrics_results.jaccard_distance_matrix,
-        metadata=sample_metadata,
-        distance_to='donor',
-        compare='baseline',
-        time_column='timepoints',
-        reference_column='DonorSampleID',
-        subject_column='PatientID',
-        filter_missing_references=True,
-        against_group='0',
-        p_val_approx='asymptotic'
-    ),
-    use.UsageOutputNames(
-        stats='stats',
-        raincloud_plot='raincloud_plot'
-    )
-)
-```
-
 As you can see, this command generates many outputs including both QIIME 2
 artifacts and visualizations. You can take a look at the visualizations that are
 generated now. 
