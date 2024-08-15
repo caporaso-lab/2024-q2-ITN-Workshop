@@ -6,7 +6,6 @@ root: index
 chapters:
 - file: 01-exploring-the-data
 - file: 00-set-up
-- file: 02-building-phylogeny
 - file: 03-sampling-depth
 - file: 04-diversity-metrics
 - file: 05-q2-fmt
