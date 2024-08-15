@@ -12,7 +12,7 @@ default-interface: cli-usage
 ---
 ```
 
-## Wrapping up: what did you do five days ago?
+## Wrapping up: What did you do three days ago?
 
 ```{exercise}
 :label: q1
@@ -48,6 +48,7 @@ qiime tools replay-provenance \
  --out-fp 2024-workshop/workshop-provenance-replay
 ```
 
+Throughout this work shop we ran 
 Thankfully QIIME 2's data provenance tracking
 system keeps track of it all for us in case we forget.
 

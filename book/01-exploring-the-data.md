@@ -7,7 +7,7 @@ name: tutorial
 
 ```{usage-selector}
 ---
-default-interface: cli-usage
+default-interface: galaxy-usage
 ---
 ```
 ## Access the study metadata
@@ -46,7 +46,7 @@ sample_metadata = use.init_metadata('sample_metadata',
 
 ```
 
-Next, we’ll get a view of the study metadata as QIIME 2 sees it. This will allow you to assess whether the metadata that QIIME 2 is using is as you expect. You can do this using the tabulate action in QIIME 2’s q2-metadata plugin as follows.
+Next, we’ll get a view of the study metadata using QIIME 2. This will allow you to assess whether the metadata that QIIME 2 is using is as you expect. You can do this using the tabulate action in QIIME 2’s q2-metadata plugin as follows.
 
 ```{usage}
 use.action(
@@ -58,13 +58,12 @@ use.action(
 
 ## Filter the feature table to the autoFMT study samples
 
+The feature table will describe the amplicon sequence variants (ASVs) observed in which samples, and how many times each ASV was observed in each sample. The feature data in this case is the sequence that defines each ASV.
+
 In this tutorial, we're going to work specifically with samples that were
 included in the autoFMT randomized trial.
 
-To save time we will be working with the feature table that has already been filtered to remove samples that are not part of the autoFMT study. These samples were identified using the metadata in QIIME 2.
-Specifically, samples that do not contain a value in the autoFmtGroup column in the metadata were removed.
-
-Now we will run feature-table summarize 
+Lets generate and explore a summary of the feature table we will be using.
 
 ```{usage}
 
