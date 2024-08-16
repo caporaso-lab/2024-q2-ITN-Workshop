@@ -76,3 +76,6 @@ AI137269 and U54 CA209975 to Joao B. Xavier.
 QIIME 2 was initially developed with support from the National Science
 Foundation
 ([1565100](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1565100)) to JGC.
+
+The ITN is supported by:
+ * The National Cancer Institute (UE5CA254170)
