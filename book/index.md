@@ -1,7 +1,7 @@
 # QIIME 2 Cancer Microbiome Intervention Tutorial
 
 This tutorial was originally developed for the 2024 ITN and QIIME 2
-workshop, taught online August 27th - August 29th, 2024.
+workshop, taught August 27th - August 29th, 2024.
 
 ```{admonition} Important!
 Please review the
