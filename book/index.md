@@ -1,10 +1,7 @@
 # QIIME 2 Cancer Microbiome Intervention Tutorial
 
-This tutorial was originally developed for the 2022 NIH Foundation for
-Advanced Education in the Sciences Microbiome Bioinformatics with QIIME 2
-workshop, taught online January 31 - February 4, 2022. It is now being
-publicly released with [corresponding video content](https://youtube.com/playlist?list=PLbVDKwGpb3XmvnTrU40zHRT7NZWWVNUpt)
-on the [QIIME 2 YouTube channel](https://youtube.com/qiime2).
+This tutorial was originally developed for the 2024 ITN and QIIME 2
+workshop, taught online August 27th - August 29th, 2024.
 
 ```{admonition} Important!
 Please review the
@@ -15,8 +12,6 @@ we hope you will too and you become involved in the QIIME 2 community.
 
 ## Relevant links and protocols
 
-* [Workshop video playlist](https://youtube.com/playlist?list=PLbVDKwGpb3XmvnTrU40zHRT7NZWWVNUpt)
-* [Workshop slides](https://bit.ly/3GZaMjt)
 * [Project homepage](https://qiime2.org)
 * [Support and Discussion Forum](https://forum.qiime2.org) (go here for help)
 * [YouTube channel](https://youtube.com/qiime2)
@@ -41,6 +36,8 @@ These are presented in priority order.
 1. [_Reproducible, interactive, scalable and extensible microbiome data science
     using QIIME 2_](https://doi.org/10.1038/s41587-019-0209-9)
    ({cite:t}`bolyen-qiime2-2019`)
+1. [_Assessing Engraftment Following Fecal Microbiota Transplant_](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11042410/)
+   ({cite:t}`herman_2024`)
 1. [_q2-longitudinal: Longitudinal and Paired-Sample Analyses of Microbiome
     Data_](http://dx.doi.org/10.1128/mSystems.00219-18)
    ({cite:t}`bokulich-q2long-2018`)
