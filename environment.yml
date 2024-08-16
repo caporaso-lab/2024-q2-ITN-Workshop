@@ -1,7 +1,14 @@
 name: 2024.08-q2-itn-Workshop
 channels:
+- https://packages.qiime2.org/qiime2/2024.5/amplicon/passed
 - conda-forge
-- defaults
+- bioconda
 dependencies:
+  - qiime2-amplicon
   - pip:
     - jupyter-book
+    - q2doc @ git+https://github.com/qiime2/sphinx-ext-qiime2.git@master
+    - sphinx-exercise
+    - q2-stats @ git+https://github.com/qiime2/q2-stats.git@dev
+    - frictionless
+    - q2-fmt @ git+https://github.com/qiime2/q2-fmt.git@dev
