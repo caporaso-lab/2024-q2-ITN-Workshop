@@ -54,5 +54,4 @@ qiime tools replay-provenance \
 Thankfully QIIME 2's data provenance tracking
 system keeps track of it all for us in case we forget.
 
-```{bibliography}
-```
+

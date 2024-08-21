@@ -56,9 +56,9 @@ use.action(
 )
 ```
 
-## Summarize Feature Table 
+## Summarize Feature Table
 
-The feature table will describe the amplicon sequence variants (ASVs) observed in which samples, and how many times each ASV was observed in each sample. The feature data in this case is the sequence that defines each ASV.
+The feature table will describe the amplicon sequence variants (ASVs) observed in each sample, and how many times each ASV was observed in each sample. The feature data in this case is the sequence that defines each ASV.
 
 In this tutorial, we're going to work specifically with samples that were
 included in the autoFMT randomized trial.
