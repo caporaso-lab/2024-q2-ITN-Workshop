@@ -38,6 +38,9 @@ RUN qiime dev refresh-cache
 RUN echo "source activate qiime2-${DISTRO}-${EPOCH}" >> $HOME/.bashrc
 RUN echo "source tab-qiime" >> $HOME/.bashrc
 
+# update cli prompt to print working directory
+RUN echo "export PS1=\"\nCurrent working directory: \\w\n\\$ \"" >> $HOME/.bashrc
+
 # install q2-fmt & dependencies
 RUN pip install frictionless
 RUN pip install git+https://github.com/qiime2/q2-stats.git
@@ -52,9 +55,14 @@ VOLUME "/home/qiime2"
 # make default jupyter shell be bash
 ENV SHELL /bin/bash
 
-# install tree command
+# install various useful tools
 RUN apt-get update
-RUN apt-get install tree
+RUN yes | apt-get install tree vim iputils-ping nano less
+
+# copy starting workshop data into image
+RUN mkdir workshop-input-data
+COPY feature-table.qza workshop-input-data/feature-table.qza
+COPY sample-metadata.tsv workshop-input-data/sample-metadata.tsv
 
 # launch jupyter lab on startup
 CMD ["jupyter", "lab", \

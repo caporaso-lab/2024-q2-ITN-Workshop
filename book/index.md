@@ -1,4 +1,4 @@
-# QIIME 2 Cancer Microbiome Intervention Tutorial
+# QIIME 2 Cancer AutoFMT Tutorial
 
 This tutorial was originally developed for the 2024 ITN and QIIME 2
 workshop, taught August 27th - August 29th, 2024.
@@ -18,7 +18,6 @@ we hope you will too and you become involved in the QIIME 2 community.
 * [User Documentation](https://docs.qiime2.org)
 * [Developer Documentation](https://develop.qiime2.org)
 * [Linkedin](https://www.linkedin.com/groups/14490597/)
-* [Workshop announcements](https://workshops.qiime2.org)
 
 ## Recommended readings
 
@@ -47,14 +46,30 @@ These are presented in priority order.
     https://doi.org/10.1371/journal.pcbi.1009056)
    ({cite:t}`dillon-workshops-2021`)
 
-## Thank you to our hosts and our instruction team
-
-We thank our hosts, the [Foundation for Advanced Education in the Sciences
-(FAES)](https://faes.org/) for their support of the initial workshop for which
-these materials were developed.
+## Thank you to our instruction team
 
 We thank the many instructors who were involved in preparing this content,
-including the data set and the written and video tutorials.
+including the data set and the written and video tutorials for the [Cancer Microbiome Intervention Tutorial](https://docs.qiime2.org/jupyterbooks/cancer-microbiome-intervention-tutorial/index.html).
+
+
+```{list-table}
+:header-rows: 1
+
+* - Name
+  - Affiliation(s)
+* - J. Gregory Caporaso
+  - Center for Applied Microbiome Sciences, Pathogen and Microbiome Institute,
+    Northern Arizona University, USA
+* - Johannah Hagen
+  - Center for Applied Microbiome Sciences, Pathogen and Microbiome Institute,
+    Northern Arizona University, USA
+* - Chloe Herman
+  - Center for Applied Microbiome Sciences, Pathogen and Microbiome Institute,
+    Northern Arizona University, USA
+* - Colin Wood
+  - Center for Applied Microbiome Sciences, Pathogen and Microbiome Institute,
+    Northern Arizona University, USA
+```
 
 ## Thank you to our funders
 
