@@ -59,8 +59,10 @@ ENV SHELL /bin/bash
 RUN apt-get update
 RUN yes | apt-get install tree vim iputils-ping nano less
 
-# TODO: copy starting workshop data into image
+# copy starting workshop data into image
 RUN mkdir workshop-input-data
+COPY feature-table.qza workshop-input-data/feature-table.qza
+COPY sample-metadata.tsv workshop-input-data/sample-metadata.tsv
 
 # launch jupyter lab on startup
 CMD ["jupyter", "lab", \
