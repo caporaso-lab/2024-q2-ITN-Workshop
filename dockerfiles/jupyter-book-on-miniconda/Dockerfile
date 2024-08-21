@@ -3,7 +3,7 @@ FROM continuumio/miniconda3:latest
 ENV DISTRO amplicon
 ENV EPOCH 2024.5
 
-ENV PATH /opt/conda/envs/qiime2-amplicon-2024.5/bin:$PATH
+ENV PATH /opt/conda/envs/qiime2-${DISTRO}-${EPOCH}/bin:$PATH
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
 ENV MPLBACKEND agg
@@ -41,13 +41,14 @@ RUN echo "source tab-qiime" >> $HOME/.bashrc
 # update cli prompt to print working directory
 RUN echo "export PS1=\"\nCurrent working directory: \\w\n\\$ \"" >> $HOME/.bashrc
 
-# install q2-fmt & dependencies
+# install q2-fmt & dependencies (referring to specific commits for the git repos)
 RUN pip install frictionless
-RUN pip install git+https://github.com/qiime2/q2-stats.git
-RUN pip install git+https://github.com/qiime2/q2-fmt.git
+RUN pip install git+https://github.com/qiime2/q2-stats.git@6711b86fa605a4352fb59bbcd9a3394508a8ff8b
+RUN pip install git+https://github.com/qiime2/q2-fmt.git@7d7cb102752b5a03acd74e1e77b831555caa8843
 
-# install jupyter lab
+# install jupyter lab, configure notebooks for displaying
 RUN pip install jupyterlab
+RUN jupyter serverextension enable --py qiime2 --sys-prefix
 
 # declare that a volume will be mounted to the working directory
 VOLUME "/home/qiime2"
