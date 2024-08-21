@@ -25,7 +25,7 @@ applied them, and the parameters that were used for each.
 
 Without referring back to the earlier sections of the tutorial, but rather
 using your memory or information from the results that you've generated,
-describe all filtering steps that were applied to the feature table in the
+describe all the steps that were applied to the feature table in the
 order that we applied them.
 ```
 
