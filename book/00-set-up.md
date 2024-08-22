@@ -4,7 +4,7 @@
 First we need to pull (download) the image that contains our qiime2
 environment.
 ```shell
-docker image pull <TODO>
+docker image pull quay.io/qiime2/workshops:2024.08.27-nih-amplicon-2024.5
 ```
 
 
@@ -61,11 +61,12 @@ docker container run \
   -itd \
   --rm \
   -v qiime2-workshop:/home/qiime2 \
-  --name workshop \
+  --name qiime2-workshop \
   -p 8889:8888 \
-  <TODO - name of image>
+  quay.io/qiime2/workshops:2024.08.27-nih-amplicon-2024.5
 ```
 ````
+
 ````{tab-item} M-series Mac Instructions
 ```shell
 docker container run \
@@ -75,7 +76,7 @@ docker container run \
   --name workshop \
   -p 8889:8888 \
   --platform "linux/amd64" \
-  <TODO - name of image>
+  quay.io/qiime2/workshops:2024.08.27-nih-amplicon-2024.5
 ```
 ````
 `````
@@ -85,6 +86,24 @@ Now that the container is running, we can interact with it in the browser by
 going to the following url.
 ```shell
 http://localhost:8889
+```
+
+````{note}
+If you ever need to stop the container you can do so through Docker Desktop or
+through the CLI as follows.
+
+```shell
+docker container stop qiime2-workshop
+```
+
+Any data that you created in the container will persist in the volume and be
+available the next time you start the container.
+````
+
+```{note}
+Once you're done using the QIIME2 Docker container, and if you have no other
+running containers, it's a good idea to quit Docker to free up system
+resources.
 ```
 
 ## File Organization
