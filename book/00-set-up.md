@@ -73,7 +73,7 @@ docker container run \
   -itd \
   --rm \
   -v qiime2-workshop:/home/qiime2 \
-  --name workshop \
+  --name qiime2-workshop \
   -p 8889:8888 \
   --platform "linux/amd64" \
   quay.io/qiime2/workshops:2024.08.27-nih-amplicon-2024.5
