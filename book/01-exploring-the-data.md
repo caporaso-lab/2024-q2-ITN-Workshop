@@ -26,19 +26,15 @@ def metadata_from_url(url):
         import tempfile
         import requests
         import qiime2
-        import pandas as pd
+        #import pandas as pd
 
         data = requests.get(url)
 
         with tempfile.NamedTemporaryFile() as f:
             f.write(data.content)
             f.flush()
-            fmt_metadata = pd.read_csv(f.name, sep='\t').set_index('SampleID')
-            # drop #q2:types from the metadata
-            fmt_metadata = fmt_metadata.drop(['#q2:types'])
-            result = qiime2.Metadata(fmt_metadata)
-
-        return result
+            result = qiime2.Metadata.load(f.name)
+            return result
     return factory
 
 sample_metadata = use.init_metadata('sample_metadata',
