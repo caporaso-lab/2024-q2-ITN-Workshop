@@ -25,8 +25,8 @@ applied them, and the parameters that were used for each.
 
 Without referring back to the earlier sections of the tutorial, but rather
 using your memory or information from the results that you've generated,
-describe all filtering steps that were applied to the feature table in the
-order that we applied them.
+describe all the steps that were applied to the feature table and in the
+order that we applied them as well as the even sampling depth that you chose your analysis.
 ```
 
 ```{solution} q1
@@ -51,8 +51,11 @@ qiime tools replay-provenance \
  --out-fp 2024-workshop/workshop-provenance-replay
 ```
 
+```{note}
+In this tutorial, we started with the feature table, sequences, and metadata 
+provided by the authors. This leads to a more abbreviated provenance than 
+is typical with an analysis using sequences recieved from a sequencer.
+```
+
 Thankfully QIIME 2's data provenance tracking
 system keeps track of it all for us in case we forget.
-
-```{bibliography}
-```
