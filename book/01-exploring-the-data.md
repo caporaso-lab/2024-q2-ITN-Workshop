@@ -26,7 +26,6 @@ def metadata_from_url(url):
         import tempfile
         import requests
         import qiime2
-        #import pandas as pd
 
         data = requests.get(url)
 
