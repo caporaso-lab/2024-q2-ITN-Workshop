@@ -34,8 +34,6 @@ def metadata_from_url(url):
             f.write(data.content)
             f.flush()
             fmt_metadata = pd.read_csv(f.name, sep='\t').set_index('SampleID')
-            # drop #q2:types from the metadata
-            fmt_metadata = fmt_metadata.drop(['#q2:types'])
             result = qiime2.Metadata(fmt_metadata)
 
         return result
