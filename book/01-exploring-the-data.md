@@ -26,13 +26,15 @@ def metadata_from_url(url):
         import tempfile
         import requests
         import qiime2
+        import pandas as pd
 
         data = requests.get(url)
 
         with tempfile.NamedTemporaryFile() as f:
             f.write(data.content)
             f.flush()
-            result = qiime2.Metadata.load(f.name)
+            fmt_metadata = pd.read_csv(f.name, sep='\t').set_index('SampleID')
+            result = qiime2.Metadata.load(fmt_metadata)
             return result
     return factory
 
@@ -93,4 +95,3 @@ use.action(
     use.UsageOutputNames(visualization='autofmt_table_summ'),
 )
 ```
-# commit comment
