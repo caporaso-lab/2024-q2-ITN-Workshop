@@ -47,26 +47,7 @@ Lets generate and explore a summary of the feature table we will be using.
 
 feature_table_url = 'https://qiime2-workshops.s3.us-west-2.amazonaws.com/itn-aug2024/autofmt-table.qza'
 
-def artifact_from_url(url):
-    def factory():
-        import tempfile
-        import requests
-        import qiime2
-
-        data = requests.get(url)
-
-        with tempfile.NamedTemporaryFile() as f:
-            f.write(data.content)
-            f.flush()
-            result = qiime2.Artifact.load(f.name)
-
-        return result
-    return factory
-
-autofmt_table = use.init_artifact(
-        'feature-table',
-        artifact_from_url(feature_table_url))
-
+autofmt_table = use.init_artifact_from_url('feature-table', feature_table_url)
 ```
 
 ```{usage}
