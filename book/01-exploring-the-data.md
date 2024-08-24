@@ -35,8 +35,7 @@ def metadata_from_url(url):
             f.flush()
             fmt_metadata = pd.read_csv(f.name, sep='\t').set_index('SampleID')
             result = qiime2.Metadata(fmt_metadata)
-
-        return result
+            return result
     return factory
 
 sample_metadata = use.init_metadata('sample_metadata',
