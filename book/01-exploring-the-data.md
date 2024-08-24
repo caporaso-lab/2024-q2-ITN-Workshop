@@ -21,26 +21,7 @@ First, download the metadata.
 ```{usage}
 md_url = 'https://qiime2-workshops.s3.us-west-2.amazonaws.com/itn-aug2024/sample-metadata-v3-q2-fmt.tsv'
 
-def metadata_from_url(url):
-    def factory():
-        import tempfile
-        import requests
-        import qiime2
-        import pandas as pd
-
-        data = requests.get(url)
-
-        with tempfile.NamedTemporaryFile() as f:
-            f.write(data.content)
-            f.flush()
-            fmt_metadata = pd.read_csv(f.name, sep='\t').set_index('SampleID')
-            result = qiime2.Metadata(fmt_metadata)
-            return result
-    return factory
-
-sample_metadata = use.init_metadata('sample_metadata',
-                                    metadata_from_url(md_url))
-
+sample_metadata = use.init_metadata_from_url('sample_metadata', md_url)
 ```
 
 Next, we’ll get a view of the study metadata using QIIME 2. This will allow you to assess whether the metadata that QIIME 2 is using is as you expect. You can do this using the tabulate action in QIIME 2’s q2-metadata plugin as follows.
@@ -66,26 +47,7 @@ Lets generate and explore a summary of the feature table we will be using.
 
 feature_table_url = 'https://qiime2-workshops.s3.us-west-2.amazonaws.com/itn-aug2024/autofmt-table.qza'
 
-def artifact_from_url(url):
-    def factory():
-        import tempfile
-        import requests
-        import qiime2
-
-        data = requests.get(url)
-
-        with tempfile.NamedTemporaryFile() as f:
-            f.write(data.content)
-            f.flush()
-            result = qiime2.Artifact.load(f.name)
-
-        return result
-    return factory
-
-autofmt_table = use.init_artifact(
-        'feature-table',
-        artifact_from_url(feature_table_url))
-
+autofmt_table = use.init_artifact_from_url('feature-table', feature_table_url)
 ```
 
 ```{usage}
