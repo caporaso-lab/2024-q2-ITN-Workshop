@@ -11,7 +11,7 @@ serve_full: build_full
 
 preview: serve_preview
 
-build_preview: clean
+build_preview:
 	Q2DOC_NO_EXEC=1 jb build book/ --all
 
 serve_preview: build_preview

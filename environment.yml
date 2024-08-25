@@ -1,4 +1,4 @@
-name: 2024.08-q2-itn-Workshop
+name: 2024.08-q2-itn-workshop
 channels:
 - https://packages.qiime2.org/qiime2/2024.5/amplicon/passed
 - conda-forge

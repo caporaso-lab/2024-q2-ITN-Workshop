@@ -1,74 +1,80 @@
-# Setting Up Docker
+# Loading your QIIME 2 container
 
-## Pulling the Docker Image
-First we need to pull (download) the image that contains our qiime2
-environment.
-```shell
-docker image pull quay.io/qiime2/workshops:2024.08.27-nih-amplicon-2024.5
+In this workshop, to use QIIME 2 on the command line or through Jupyter Lab, you'll work through a containerized environment.
+We recommend using either [Podman](https://podman.io) or [Docker](https://docker.com).
+Before you jump in with QIIME 2, follow the "Get Started" (i.e., install) instructions for one or the other, and confirm that it's working according to the Podman's or Docker's instructions.
+(We don't link to their instructions here so that we don't send you to an outdated link.)
+
+```{admonition} Podman versus Docker
+:class: dropdown, question
+We don't take much of a stance on this because teaching with either is still pretty new to use.
+Podman definitely seems to have some interesting benefits though.
+Get a perspective from the developers of Podman [here](https://www.redhat.com/en/topics/containers/what-is-podman#podman-vs-docker).
 ```
 
+(pull-image)=
+## Pull the container image
 
-``````{admonition} Building the image locally
-:class: dropdown
+After installing Docker or Podman, we next need to pull (i.e., download) the image that contains our QIIME 2 environment.
+Copy/paste the relevant commands.
 
-```{warning}
-Only use this approach if you have a good reason to do so, e.g. if you
-want to experiment with changes to the Dockerfile. Otherwise, pulling the
-image will be quicker and easier.
-```
-
-We can build the image ourselves by doing the following.
-
-We clone the repository for this Jupyter book.
-```shell
-git clone git@github.com:caporaso-lab/2024-q2-ITN-Workshop.git
-```
-
-We navigate to the directory that contains the Dockerfile and auxiliary data.
-```shell
-cd 2024-q2-ITN-Workshop/dockerfiles/jupyter-lab-on-miniconda
-```
-
-First we make sure that the Docker daemon is running (e.g. by launching Docker
-Desktop). Then we build the image.
 `````{tab-set}
-````{tab-item} Standard Instructions
+````{tab-item} Docker instructions
 ```shell
-docker image build -t <my-image-name> .
+docker \
+ image \
+ pull quay.io/qiime2/workshops:2024.08.27-nih-amplicon-2024.5
 ```
 ````
-````{tab-item} M-series Mac Instructions
+
+````{tab-item} Podman instructions
 ```shell
-docker image build -t <my-image-name> --platform "linux/amd64" .
+podman \
+ image \
+ pull quay.io/qiime2/workshops:2024.08.27-nih-amplicon-2024.5
 ```
 ````
 `````
 
-``````
+(create-volume)=
+## Create data storage volume
 
-Next, we create a volume that will be used to store any data we generate during
-our analysis.
+Next, we create a volume that will be used to store any data we generate during our analysis.
+Data that you create in your container will persist and be available the next time you start the container.
+
+`````{tab-set}
+````{tab-item} Docker
 ```shell
 docker volume create qiime2-workshop
 ```
+````
+````{tab-item} Podman
+```shell
+podman volume create qiime2-workshop
+```
+````
+`````
 
-Now we'll start the container.
+(start-container)=
+## Start the container
+
+Next, we'll start the container.
 
 `````{tab-set}
-````{tab-item} Standard Instructions
+
+````{tab-item} Docker
 ```shell
 docker container run \
   -itd \
   --rm \
   -v qiime2-workshop:/home/qiime2 \
-
   --name qiime2-workshop \
   -p 8889:8888 \
   quay.io/qiime2/workshops:2024.08.27-nih-amplicon-2024.5
 ```
 ````
 
-````{tab-item} M-series Mac Instructions
+````{tab-item} Docker on Apple M-series
 ```shell
 docker container run \
   -itd \
@@ -80,39 +86,52 @@ docker container run \
   quay.io/qiime2/workshops:2024.08.27-nih-amplicon-2024.5
 ```
 ````
-`````
 
-
-Now that the container is running, we can interact with it in the browser by
-going to the following url.
+````{tab-item} Podman
 ```shell
-http://localhost:8889
+podman container run \
+  -itd \
+  --rm \
+  -v qiime2-workshop:/home/qiime2 \
+  --name qiime2-workshop \
+  -p 8889:8888 \
+  quay.io/qiime2/workshops:2024.08.27-nih-amplicon-2024.5
 ```
-
-````{note}
-If you ever need to stop the container you can do so through Docker Desktop or
-through the CLI as follows.
-
-```shell
-docker container stop qiime2-workshop
-```
-
-Any data that you created in the container will persist in the volume and be
-available the next time you start the container.
 ````
 
-```{note}
-Once you're done using the QIIME2 Docker container, and if you have no other
-running containers, it's a good idea to quit Docker to free up system
-resources.
+````{tab-item} Podman on Apple M-series
+```shell
+podman container run \
+  -itd \
+  --rm \
+  -v qiime2-workshop:/home/qiime2 \
+  --name qiime2-workshop \
+  -p 8889:8888 \
+  --platform "linux/amd64" \
+  quay.io/qiime2/workshops:2024.08.27-nih-amplicon-2024.5
 ```
+````
+`````
 
-## File Organization
-Let's take a look at our directory organization
+## Interact with Jupyter Lab and QIIME 2
+
+When the container is running, you can interact with it by opening the following link: http://localhost:8889
+
+### Using QIIME 2 through the command line
+
+In the Jupyter Lab window, click the *Terminal* button toward the bottom right.
+(Look for a block box with a `$` symbol in it.)
+
+You'll then have command line access to QIIME 2.
+
+Take a look at the directory organization by running:
+
 ```shell
 tree
 ```
-This is what it should look like.
+
+The output should look like the following:
+
 ```shell
 /home/qiime2
 ├── matplotlib
@@ -120,19 +139,79 @@ This is what it should look like.
 │
 ```
 
-Now lets make a directory for us to run our analysis in!
+Create a directory for your work during this workshop:
 
 ```shell
 mkdir 2024-workshop
 ```
 
-```shell
-tree
-```
+If you run `tree` again, you should now see the new directory:
 
 ```shell
+$ tree
 /home/qiime2
 ├── matplotlib
 ├── q2cli
 ├── 2024-workshop
 ```
+
+At this point, you're ready to start working with QIIME 2.
+Run the command `qiime info` to learn about the version of QIIME 2 that is installed.
+You're now ready to [continue with the tutorial](exploring-the-data).
+You can return to this document when you need to start, stop, or update your container.
+Have fun!
+
+## Stopping the container
+
+When you're no longer using the container, you can stop it as follows:
+
+`````{tab-set}
+````{tab-item} Docker
+```shell
+docker container stop qiime2-workshop
+```
+````
+
+````{tab-item} Podman
+```shell
+podman container stop qiime2-workshop
+```
+````
+`````
+
+If using Docker, once you're done using your container and don't have any other containers running, it's a good idea to quit Docker so it's not using resources unnecessarily.
+
+(build-the-image)=
+## Building the image locally (optional; experts only ♦♦)
+
+**Expert users** may ultimately be interesting in modifying the image used here.
+This can be done with `docker` as follows.
+[Pulling the image](pull-image) will be quicker and easier.
+
+First, clone the repository for this Jupyter book.
+```shell
+git clone git@github.com:caporaso-lab/2024-q2-ITN-Workshop.git
+```
+
+Then, navigate to the directory that contains the Dockerfile and auxiliary data.
+
+```shell
+cd 2024-q2-ITN-Workshop/dockerfiles/jupyter-lab-on-miniconda
+```
+
+Next, make sure that the Docker daemon is running (e.g. by launching Docker Desktop).
+
+Finally, build the image.
+
+`````{tab-set}
+````{tab-item} Standard Instructions
+```shell
+docker image build -t my-image-name .
+```
+````
+````{tab-item} M-series Mac Instructions
+```shell
+docker image build -t my-image-name --platform "linux/amd64" .
+```
+````
+`````
