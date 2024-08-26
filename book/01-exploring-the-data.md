@@ -1,5 +1,6 @@
 (exploring-the-data)=
 # Exploring the data with Galaxy
+
 ```{usage-scope}
 ---
 name: tutorial
@@ -23,7 +24,8 @@ To access the Galaxy server we'll be using for this class, go to https://cancer.
 You will need to create an account the first time you use this server.
 This server is free to use, and you can feel free to continue using the account you create after the workshop has ended.
 
-## Access the study metadata
+(access-metadata)=
+## Access and summarize the study metadata
 
 To begin our work with QIIME 2 and the tutorial data we will
 start by downloading the metadata, generating a summary, and exploring
@@ -47,7 +49,8 @@ use.action(
 )
 ```
 
-## Summarize Feature Table
+(access-feature-table)=
+## Access and summarize the feature table
 
 The feature table will describe the amplicon sequence variants (ASVs) observed in each sample, and how many times each ASV was observed in each sample. The feature data in this case is the sequence that defines each ASV.
 

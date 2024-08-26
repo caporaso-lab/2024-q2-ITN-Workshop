@@ -158,7 +158,7 @@ qiime feature-table filter-samples --help
 That will provide help text and a list of examples that illustrate how to use the command to achieve different goals.
 
 You can return to this document when you need to start, stop, or update your container.
-Have fun!
+You can now continue to [](exploring-the-data-container).
 
 ## Stopping the container
 

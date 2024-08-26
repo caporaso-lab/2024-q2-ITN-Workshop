@@ -54,67 +54,33 @@ In this tutorial when you see commands displayed beginning with the `$` characte
 You should not type the `$` character - rather it's intended as an indicator that you should be entering a command, and to differentiate commands from the output they produce (which often follows, as in the preceding example).
 ```
 
+Change into the directory you just created using the `cd` command:
+
+```shell
+cd 2024-workshop
+```
+
 At this point, you're ready to start working with QIIME 2.
 Run the command `qiime info` to learn about the version of QIIME 2 that is installed.
-You're now ready to [continue with the tutorial](exploring-the-data).
 
+## Access and summarize the study metadata and feature table
 
+To illustrate the parallels between Galaxy and the command line interface, we'll carry out the same first two steps that we ran with Galaxy, but this time in our container.
 
-## Access Galaxy
+Return to the [](access-metadata) and [](access-feature-table) sections of the tutorial.
+However, before completing those steps, scroll to the top of that page and select *Command Line (q2cli)* in the interface selection box (see {numref}`interface-dropdown` for an illustration of this box).
 
-We'll start working with QIIME 2 through the Galaxy graphical user interface.
-This is a convenient way to use QIIME 2 as it's fully graphical - no command line or coding is needed!
-However, as of now, Galaxy environments tend to have slightly older versions of QIIME 2 installed on them, and the installations are harder for you to customize (e.g., to install plugins you're interested in that aren't included in QIIME 2).
-For this reason, in this workshop we're going to teach you how to use QIIME 2 both through Galaxy and on the command line.
+## View the results
 
-To access the Galaxy server we'll be using for this class, go to https://cancer.usegalaxy.org.
-You will need to create an account the first time you use this server.
-This server is free to use, and you can feel free to continue using the account you create after the workshop has ended.
+After completing the access and summarization steps in your container we'll view the resulting summaries.
+Using the file browser on the left side of your Jupyter Lab window, download the file.
+In your web browser, navigate to https://view.qiime2.org, and drag and drop the files you downloaded onto the file upload box (you'll need to do this in two different browser tabs).
+The visualizations should load, and then should present the same results you saw from Galaxy.
+(If you don't have an Internet connection, refer to [](notebook-qzv-viewing) to view your .qzv files.)
 
-## Access the study metadata
-
-To begin our work with QIIME 2 and the tutorial data we will
-start by downloading the metadata, generating a summary, and exploring
-that summary.
-
-First, download the metadata.
-
-```{usage}
-md_url = 'https://qiime2-workshops.s3.us-west-2.amazonaws.com/itn-aug2024/sample-metadata-v3-q2-fmt.tsv'
-
-sample_metadata = use.init_metadata_from_url('sample_metadata', md_url)
+```{note}
+Because different versions of QIIME 2 are installed on Galaxy and in your container environment, you may see slight differences in the visualizations relative to those you created using Galaxy.
+Any differences should be inconsequential.
 ```
 
-Next, we’ll get a view of the study metadata using QIIME 2. This will allow you to assess whether the metadata that QIIME 2 is using is as you expect. You can do this using the tabulate action in QIIME 2’s q2-metadata plugin as follows.
 
-```{usage}
-use.action(
-    use.UsageAction(plugin_id='metadata', action_id='tabulate'),
-    use.UsageInputs(input=sample_metadata),
-    use.UsageOutputNames(visualization='metadata_summ_1')
-)
-```
-
-## Summarize Feature Table
-
-The feature table will describe the amplicon sequence variants (ASVs) observed in each sample, and how many times each ASV was observed in each sample. The feature data in this case is the sequence that defines each ASV.
-
-In this tutorial, we're going to work specifically with samples that were
-included in the autoFMT randomized trial.
-
-Lets generate and explore a summary of the feature table we will be using.
-
-```{usage}
-
-feature_table_url = 'https://qiime2-workshops.s3.us-west-2.amazonaws.com/itn-aug2024/autofmt-table.qza'
-
-autofmt_table = use.init_artifact_from_url('feature-table', feature_table_url)
-```
-
-```{usage}
-use.action(
-    use.UsageAction(plugin_id='feature_table', action_id='summarize'),
-    use.UsageInputs(table=autofmt_table, sample_metadata=sample_metadata),
-    use.UsageOutputNames(visualization='autofmt_table_summ'),
-)
-```
