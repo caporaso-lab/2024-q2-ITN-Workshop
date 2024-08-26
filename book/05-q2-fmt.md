@@ -1,4 +1,4 @@
-# Assessing Engraftment Extent with q2-FMT
+# Assessing engraftment extent with q2-FMT
 ```{usage-scope}
 ---
 name: tutorial
@@ -11,25 +11,32 @@ default-interface: cli-usage
 ---
 ```
 
+When investigating FMTs, it is really important to understand the extent to which the recipient microbiome engrafted the donated microbiome. Without assessing engraftment extent, we can never fully understand the clinical outcomes of the study {numref}`engraftment-extent`.
 
-When investigating FMTs, it is really important to understand the extent to which the recipient microbiome engrafted the donated microbiome. Without assessing engraftment extent, we can never fully understand the clincial outcomes of the study. 
+```{figure} _images/engraftment-extent.png
+:name: engraftment-extent
 
-![engraftment-extent](engraftment-extent.png)
 Created with BioRender.
+```
 
-q2-fmt can be used to help you understand engraftment extent following FMT by providing an all-in-one suite for engraftment extent methods.
-
-There are three criteria for assessing engraftment that are defined in Herman et al(2024). 
+[Herman et al. (2024)](https://pubmed.ncbi.nlm.nih.gov/38659636/) {cite}`herman_2024` defines three criteria that are important for understanding if a microbiome engrafted following FMT.
+These are:
 1. Chimeric Asymmetric Community Coalescence
-2. Donated Microbiome Indicator Features
-3. Temporal Stability.
-For more information on these criteria: [Herman et al (2024)](https://pubmed.ncbi.nlm.nih.gov/38659636/)({cite:t}`herman_2024`).  q2-fmt can be used to investigate all three of these criteria. 
+1. Donated Microbiome Indicator Features
+1. Temporal Stability.
 
+q2-fmt was designed to help you investigate all three of these criteria.
+q2-fmt is a QIIME 2 plugin that was designed to help you investigate all three of these criteria.
 
-Today for this tutorial, we will be investigating the first criterion: Chimeric Asymmetric Community Coalescence.
+## Chimeric Asymmetric Community Coalescence
 
-Lets take a look at distance to donor (using jaccard distance) see how the recipient's distance to their donor changes following the FMT. 
+In this tutorial, we will be investigating the first criterion: Chimeric Asymmetric Community Coalescence.
 
+We'll assess the *distance to donor* (using Jaccard distance) to see how the recipient's distance to their donor sample changes following the FMT.
+Before continuing, think about what you might expect to see.
+Should you expect a recipient's gut microbiome composition to become more or less similar to their donor after FMT?
+How quickly would you expect to see that change?
+What do you expect would happen a few months or years after the transplant?
 
 ```{usage}
 use.action(
@@ -47,28 +54,36 @@ use.action(
         p_val_approx='asymptotic'
     ),
     use.UsageOutputNames(
-        stats='jaccard_stats',
+        stats='jaccard_raincloud_stats',
         raincloud_plot='jaccard_raincloud_plot'
     )
 )
 ```
-In our raincloud plot, we can see that following cancer treatment the recipients distance to donor is relatively high. This seems to be naturally resolving itself but after FMT intervention the recipient's microbiome looks more similar to the donor. We see some stability in this but by the last timepoint the repiecient's microbiome mostly looks unique from its donated microbiome.
 
-long term developing a personallze microbiome is common following FMT, however it is important that features of the donated microbiome stick around (Like alpha diveristy). We can investigate this more in our challenge below! 
+In the resulting *raincloud plot*, we see that following cancer treatment the recipients distance to donor is relatively high.
+This seems to be naturally resolving itself but after FMT intervention the recipient's microbiome looks more similar to the donor.
+We see some stability in this but by the last time point the recipient's microbiome mostly looks unique from its donated microbiome.
 
+## An optional exercise
 
+While FMT research is still in its infancy, some early studies suggest that long-term, returning to a "personalize microbiome" is common after FMT, but in some cases features of the donated microbiome are retained.
+Let's investigate this idea in an exercise.
 
-```{exercise}
-:label: alpha-diversity
+(alpha-diversity-exercise)=
+```{admonition} Tracking alpha diversity following FMT
+:class: note
 
-If you have time, there is an extra challenge! We just looked at distance to donor following FMT intervention. What happens to alpha diveristy following FMT intervention. Lets investigate this using our observered features vector. 
+Above we tracked the *distance to donor* following FMT intervention.
+This is a beta diversity approach to assessing Chimeric Asymmetric Community Coalescence that tells us about the overall membership or composition of a microbiome.
+We can also directly investigate what happens to community richness, an alpha diversity metric, following FMT intervention.
 
+Try to adapt your above command, and perhaps referring to other sections of the tutorial, to compute a raincloud plot that will allow you to investigate this using the *observed features* vector you computed earlier.
+When you're done, or if you get stuck, expand the following dropdown box for a command that will generate this plot for you.
 ```
 
-```{solution} alpha-diversity
-:label: alpha-diversity-solution
-:class: dropdown
-
+(alpha-diversity-solution)=
+```{admonition} Solution
+:class: dropdown, note
 
 ```{usage}
 use.action(
@@ -86,8 +101,8 @@ use.action(
         p_val_approx='asymptotic'
     ),
     use.UsageOutputNames(
-        stats='stats_obs',
-        raincloud_plot='raincloud_plot_obs'
+        stats='obs_features_raincloud_stats',
+        raincloud_plot='obs_features_raincloud_plot'
     )
 )
 ```

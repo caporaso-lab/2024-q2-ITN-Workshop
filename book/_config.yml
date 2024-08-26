@@ -3,8 +3,8 @@
 
 title: 2024 q2-ITN workshop
 author: The QIIME 2 Developers
-logo: logo.png
-copyright: 2023-2024
+logo: _images/logo.png
+copyright: '2024'
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -39,3 +39,7 @@ sphinx:
     - sphinx_exercise
   config:
     html_baseurl: https://202408-q2-itn-workshop.readthedocs.io/en/latest/
+
+parse:
+  myst_substitutions:
+    galaxy_link: "[the Galaxy server](https://usegalaxy.org/join-training/qiime2-itn-2024/)"
