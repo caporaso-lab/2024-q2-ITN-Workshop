@@ -9,10 +9,10 @@ build_full: clean
 serve_full: build_full
 	cd book/_build/html && python -m http.server && cd -
 
-preview: serve_preview
+preview: build_preview
 
 build_preview:
-	Q2DOC_NO_EXEC=1 jb build book/ --all
+	Q2DOC_NO_EXEC=1 jb build book/
 
 serve_preview: build_preview
 	cd book/_build/html && python -m http.server && cd -

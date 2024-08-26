@@ -11,6 +11,8 @@ default-interface: cli-usage
 ---
 ```
 
+**Add Schloss and q2-boots references.**
+
 As we begin performing more analyses of the samples in our feature table, an
 important parameter that needs to be define is the even sampling (i.e.
 rarefaction) depth that diversity metrics need to be computed at. Because most

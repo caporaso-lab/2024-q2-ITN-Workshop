@@ -1,4 +1,4 @@
-# Loading your QIIME 2 container
+# Working with your QIIME 2 container
 
 In this workshop, to use QIIME 2 on the command line or through Jupyter Lab, you'll work through a containerized environment.
 We recommend using either [Podman](https://podman.io) or [Docker](https://docker.com).
@@ -7,9 +7,12 @@ Before you jump in with QIIME 2, follow the "Get Started" (i.e., install) instru
 
 ```{admonition} Podman versus Docker
 :class: dropdown, question
-We don't take much of a stance on this because teaching with either is still pretty new to use.
-Podman definitely seems to have some interesting benefits though.
-Get a perspective from the developers of Podman [here](https://www.redhat.com/en/topics/containers/what-is-podman#podman-vs-docker).
+We don't take much of a stance on whether Podman or Docker is a better tool for using QIIME 2 - teaching with either is still pretty new to us.
+
+Podman seems to have some interesting benefits though, including ease of transition to paid cloud environments (via [Kubernetes](https://www.digitalocean.com/products/kubernetes)) if you need more computational resources than you have access to.
+Podman also doesn't require that you have root/admin access on the computer where you're using it, so may work better if you're using computer hardware that is administered by others (such as a laptop computer owned and maintained by your employer).
+
+You can find a perspective on the differences between the two from the developers of Podman [here](https://www.redhat.com/en/topics/containers/what-is-podman#podman-vs-docker).
 ```
 
 (pull-image)=
@@ -124,40 +127,36 @@ In the Jupyter Lab window, click the *Terminal* button toward the bottom right.
 
 You'll then have command line access to QIIME 2.
 
-Take a look at the directory organization by running:
+In the terminal environment, run the following command:
 
 ```shell
-tree
+qiime info
 ```
 
-The output should look like the following:
+This provides information on your QIIME 2 environment, including the versions of the QIIME 2 framework, Python, and the installed plugins.
+
+To get a start getting a feel for what you can do with your QIIME 2 deployment, run:
 
 ```shell
-/home/qiime2
-├── matplotlib
-├── q2cli
-│
+qiime --help
 ```
 
-Create a directory for your work during this workshop:
+This provides a list of the available QIIME 2 plugins.
+To learn more about what you can do with one of them (for example, the `feature-table` plugin), call:
 
 ```shell
-mkdir 2024-workshop
+qiime feature-table --help
 ```
 
-If you run `tree` again, you should now see the new directory:
+This will display a list of actions (i.e., commands) that are available in that plugin.
+To learn how to use one, for example `filter-samples`, call:
 
 ```shell
-$ tree
-/home/qiime2
-├── matplotlib
-├── q2cli
-├── 2024-workshop
+qiime feature-table filter-samples --help
 ```
 
-At this point, you're ready to start working with QIIME 2.
-Run the command `qiime info` to learn about the version of QIIME 2 that is installed.
-You're now ready to [continue with the tutorial](exploring-the-data).
+That will provide help text and a list of examples that illustrate how to use the command to achieve different goals.
+
 You can return to this document when you need to start, stop, or update your container.
 Have fun!
 
