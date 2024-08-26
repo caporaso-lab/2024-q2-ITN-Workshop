@@ -25,7 +25,7 @@ recommend making your choice by reviewing the information presented in the
 feature table summary file. Choose a value that is as high as possible (so you
 retain more sequences per sample) while excluding as few samples as possible.
 
-Lets revisit that feature table summary! 
+Lets revisit that feature table summary!
 
 ## Alpha rarefaction plots
 

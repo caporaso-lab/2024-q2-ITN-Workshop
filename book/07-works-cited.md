@@ -1,4 +1,4 @@
-# Works cited in this tutorial
+# Works cited
 
 ```{bibliography}
 ```

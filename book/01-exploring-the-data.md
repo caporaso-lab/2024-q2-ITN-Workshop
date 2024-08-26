@@ -1,4 +1,5 @@
-# Exploring the Data
+(exploring-the-data)=
+# Exploring the data with Galaxy
 ```{usage-scope}
 ---
 name: tutorial
@@ -10,6 +11,18 @@ name: tutorial
 default-interface: galaxy-usage
 ---
 ```
+
+## Access Galaxy
+
+We'll start working with QIIME 2 through the Galaxy graphical user interface.
+This is a convenient way to use QIIME 2 as it's fully graphical - no command line or coding is needed!
+However, as of now, Galaxy environments tend to have slightly older versions of QIIME 2 installed on them, and the installations are harder for you to customize (e.g., to install plugins you're interested in that aren't included in QIIME 2).
+For this reason, in this workshop we're going to teach you how to use QIIME 2 both through Galaxy and on the command line.
+
+To access the Galaxy server we'll be using for this class, go to https://cancer.usegalaxy.org.
+You will need to create an account the first time you use this server.
+This server is free to use, and you can feel free to continue using the account you create after the workshop has ended.
+
 ## Access the study metadata
 
 To begin our work with QIIME 2 and the tutorial data we will
