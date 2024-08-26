@@ -19,7 +19,7 @@ When investigating FMTs, it is really important to understand the extent to whic
 Created with BioRender.
 ```
 
-[Herman et al. (2024)](https://pubmed.ncbi.nlm.nih.gov/38659636/) {cite:t}`herman_2024` defines three criteria that are important for understanding if a microbiome engrafted following FMT.
+[Herman et al. (2024)](https://pubmed.ncbi.nlm.nih.gov/38659636/) {cite}`herman_2024` defines three criteria that are important for understanding if a microbiome engrafted following FMT.
 These are:
 1. Chimeric Asymmetric Community Coalescence
 1. Donated Microbiome Indicator Features

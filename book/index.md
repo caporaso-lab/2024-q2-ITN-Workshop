@@ -50,8 +50,8 @@ These are presented in priority order.
 * - Colin Wood
   - Center for Applied Microbiome Sciences, Pathogen and Microbiome Institute,
     Northern Arizona University, USA
-* - Colin Brislawn
-  - Vasogo, USA
+* - [Colin Brislawn](mailto:colin+q2itn@vasago.com)
+  - Independent Scientist, USA
 * - Carrie Wright
   - Fred Hutch Cancer Center, USA
 * - Candace Savonen

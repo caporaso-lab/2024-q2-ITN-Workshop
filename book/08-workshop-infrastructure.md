@@ -14,10 +14,11 @@ QIIME 2 is designed to provide the same functionality through different types of
 In this course you'll gain experience working with (a) QIIME 2 View, (b) Galaxy, and (c) q2cli, the QIIME 2 command line interface.
 QIIME 2 additionally has a (d) Python 3 API, which you are free to experiment with in the Jupyter Notebook environment provided in the workshop container.
 
-We'll start using Galaxy through the free public Galaxy server, https://cancer.usegalaxy.org.
+We'll start using Galaxy through a workshop {{ galaxy_link }}.
 As we generate results that we want to look at, we'll using [QIIME 2 View](https://view.qiime2.org).
 We'll then spend the majority of the course interacting with QIIME 2 through its command line interface in a containerized environment that you'll run on your own computer.
-Both of these will be available for your own work after the course, and you can feel free to switch back-and-forth between these (and the other interfaces) as is helpful for you.
+Galaxy and the containerized environment are available for your own work after the course, and you can feel free to switch back-and-forth between these (and the other interfaces) as is helpful for you.
+We recommend starting to use Galaxy through https://cancer.usegalaxy.org.
 
 At the top of each page in the tutorial, you'll see a box that allows you to select which interface you would like the instructions to be presented with {numref}`interface-dropdown`.
 
