@@ -50,9 +50,15 @@ These are presented in priority order.
 * - Colin Wood
   - Center for Applied Microbiome Sciences, Pathogen and Microbiome Institute,
     Northern Arizona University, USA
+* - Colin Brislawn
+  - Vasogo, USA
+* - Carrie Wright
+  - Fred Hutch Cancer Center, USA
+* - Candace Savonen
+  - Fred Hutch Cancer Center, USA
+* - Kate Issac
+  - Fred Hutch Cancer Center, USA
 ```
-
-**TODO**: Add ITN team
 
 We additionally thank the many instructors who were involved in preparing the content used in this tutorial, including preparing the data and the written and video tutorials for the [Cancer Microbiome Intervention Tutorial](https://docs.qiime2.org/jupyterbooks/cancer-microbiome-intervention-tutorial/index.html) from which this content is derived.
 
@@ -62,6 +68,8 @@ This workshop was funded in part by NIH National Cancer Institute Informatics Te
 
 QIIME 2 is additionally funded by 1U24CA248454-01, and grants from the Chan Zuckerberg Initiative (CZI) DAF, an advised fund of Silicon Valley Community Foundation, to JGC including [DAF2019-207342](https://doi.org/10.37921/862772dbrrej) (CZI grant DOI: 10.37921/862772dbrrej; funder DOI 10.13039/100014989). Initial support for the development of QIIME 2 was provided through a [grant](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1565100) from the National Science Foundation to JGC.
 
-This website is built with MyST Markdown and Jupyter Book, which are supported in part with [funding](https://sloan.org/grant-detail/6620) from the Alfred P. Sloan Foundation.
+The Cancer Galaxy server used in this event is funded in part by NIH grants U24CA231877 and U24HG006620 to Jeremy Goecks.
 
 The preparation and dissemination of the data used in this tutorial was funded in part by the National Institutes of Health (NIH) grants U01 AI124275, R01 AI137269 and U54 CA209975 to Joao B. Xavier.
+
+This website is built with MyST Markdown and Jupyter Book, which are supported in part with [funding](https://sloan.org/grant-detail/6620) from the Alfred P. Sloan Foundation.
