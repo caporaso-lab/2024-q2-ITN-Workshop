@@ -56,7 +56,7 @@ These are presented in priority order.
   - Fred Hutch Cancer Center, USA
 * - Candace Savonen
   - Fred Hutch Cancer Center, USA
-* - Kate Issac
+* - Kate Isaac
   - Fred Hutch Cancer Center, USA
 ```
 
