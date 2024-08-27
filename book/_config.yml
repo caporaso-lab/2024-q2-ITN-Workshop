@@ -42,4 +42,4 @@ sphinx:
 
 parse:
   myst_substitutions:
-    galaxy_link: "[the Galaxy server](https://usegalaxy.org/join-training/qiime2-itn-2024/)"
+    galaxy_link: "[Galaxy server](https://cancer.usegalaxy.org/)"

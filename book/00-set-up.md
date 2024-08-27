@@ -23,6 +23,11 @@ Copy/paste the relevant commands.
 
 `````{tab-set}
 ````{tab-item} Docker instructions
+
+First, open Docker Desktop.
+
+Then, in a command terminal, run:
+
 ```shell
 docker \
  image \
@@ -31,6 +36,21 @@ docker \
 ````
 
 ````{tab-item} Podman instructions
+
+The first time you start podman, you'll need to run the following command:
+
+```shell
+podman machine init
+```
+
+Then, each time you restart your computer, you'll need to run:
+
+```shell
+podman machine start
+```
+
+Then, run:
+
 ```shell
 podman \
  image \
