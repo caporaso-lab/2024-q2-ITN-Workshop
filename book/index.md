@@ -1,7 +1,7 @@
 # QIIME 2 Cancer AutoFMT Tutorial
 
-This tutorial was originally developed for the 2024 ITN and QIIME 2
-workshop, taught August 27th - August 29th, 2024.
+The **Q**IIME **2** **C**ancer **A**utoFMT **T**utorial Jupyter **Book** (q2-cat-book) was originally developed for the 2024 [ITN](https://www.itcrtraining.org/) / [QIIME 2](https://qiime2.org)
+Workshop, taught 27 - 29 August 2024 at the National Institutes of Health.
 
 ```{admonition} Code of Conduct
 Please review the [QIIME 2 Community Code of Conduct](https://forum.qiime2.org/t/qiime-2-community-code-of-conduct/9057).
@@ -73,3 +73,9 @@ The Cancer Galaxy server used in this event is funded in part by NIH grants U24C
 The preparation and dissemination of the data used in this tutorial was funded in part by the National Institutes of Health (NIH) grants U01 AI124275, R01 AI137269 and U54 CA209975 to Joao B. Xavier.
 
 This website is built with MyST Markdown and Jupyter Book, which are supported in part with [funding](https://sloan.org/grant-detail/6620) from the Alfred P. Sloan Foundation.
+
+## Reusing
+
+ <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://q2-cat-book.readthedocs.io/en/latest/#">q2-cat-book</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://cap-lab.bio">Caporaso Lab</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-SA 4.0.<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt=""></a></p>
+
+ You are free distribute, remix, adapt, and build upon the material in any medium or format, for noncommercial purposes only, as long as credit is given to the original creator. Adaptations must be shared under the same terms.
