@@ -451,16 +451,113 @@
   year     =  2011,
   language = "en"
 }
-	
-@article{herman_2024,	
+
+@article{herman_2024,
   title = {Assessing Engraftment Following Fecal Microbiota Transplant},
   issn = {2331-8422},
   url = {https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11042410/},
   pages = {arXiv:2404.07325v1},
-  journaltitle = {{ArXiv}},
+  journal = "ArXiv",
   author = {Herman, Chloe and Barker, Bridget M. and Bartelli, Thais F. and Chandra, Vidhi and Krajmalnik-Brown, Rosa and Jewell, Mary and Li, Le and Liao, Chen and {McAllister}, Florencia and Nirmalkar, Khemlal and Xavier, Joao B. and Gregory Caporaso, J.},
   urldate = {2024-08-12},
   date = {2024-04-10},
+  month = apr,
+  year = 2024,
   pmid = {38659636},
   pmcid = {PMC11042410},
+}
+
+@ARTICLE{Schloss2024-aq,
+  title    = "Rarefaction is currently the best approach to control for uneven
+              sequencing effort in amplicon sequence analyses",
+  author   = "Schloss, Patrick D",
+  journal  = "mSphere",
+  volume   =  9,
+  number   =  2,
+  pages    = "e0035423",
+  abstract = "UNLABELLED: Considering it is common to find as much as 100-fold
+              variation in the number of 16S rRNA gene sequences across samples
+              in a study, researchers need to control for the effect of uneven
+              sequencing effort. How to do this has become a contentious
+              question. Some have argued that rarefying or rarefaction is
+              ``inadmissible'' because it omits valid data. A number of
+              alternative approaches have been developed to normalize and
+              rescale the data that purport to be invariant to the number of
+              observations. I generated community distributions based on 12
+              published data sets where I was able to assess the ability of
+              multiple methods to control for uneven sequencing effort.
+              Rarefaction was the only method that could control for variation
+              in uneven sequencing effort when measuring commonly used alpha and
+              beta diversity metrics. Next, I compared the false detection rate
+              and power to detect true differences between simulated communities
+              with a known effect size using various alpha and beta diversity
+              metrics. Although all methods of controlling for uneven sequencing
+              effort had an acceptable false detection rate when samples were
+              randomly assigned to two treatment groups, rarefaction was
+              consistently able to control for differences in sequencing effort
+              when sequencing depth was confounded with treatment group.
+              Finally, the statistical power to detect differences in alpha and
+              beta diversity metrics was consistently the highest when using
+              rarefaction. These simulations underscore the importance of using
+              rarefaction to normalize the number of sequences across samples in
+              amplicon sequencing analyses. IMPORTANCE: Sequencing 16S rRNA gene
+              fragments has become a fundamental tool for understanding the
+              diversity of microbial communities and the factors that affect
+              their diversity. Due to technical challenges, it is common to
+              observe wide variation in the number of sequences that are
+              collected from different samples within the same study. However,
+              the diversity metrics used by microbial ecologists are sensitive
+              to differences in sequencing effort. Therefore, tools are needed
+              to control for the uneven levels of sequencing. This
+              simulation-based analysis shows that despite a longstanding
+              controversy, rarefaction is the most robust approach to control
+              for uneven sequencing effort. The controversy started because of
+              confusion over the definition of rarefaction and violation of
+              assumptions that are made by methods that have been borrowed from
+              other fields. Microbial ecologists should use rarefaction.",
+  month    =  feb,
+  year     =  2024,
+  keywords = "16S rRNA gene sequencing; amplicon sequencing; bioinformatics;
+              data science; microbial ecology; microbiome",
+  language = "en"
+}
+
+@ARTICLE{Raspet2024-om,
+  title         = "Facilitating bootstrapped and rarefaction-based microbiome
+                   diversity analysis with {q2}-boots",
+  author        = "Raspet, Isaiah and Gehret, Elizabeth and Herman, Chloe and
+                   Meilander, Jeff and Manley, Andrew and Simard, Anthony and
+                   Bolyen, Evan and Caporaso, J Gregory",
+  journal       = "arXiv [q-bio.QM]",
+  abstract      = "Background: We present q2-boots, a QIIME 2 plugin that
+                   facilitates bootstrapped and rarefaction-based microbiome
+                   diversity analysis. This plugin provides eight new actions
+                   that allow users to apply any of thirty different alpha
+                   diversity metrics and twenty-two beta diversity metrics to
+                   bootstrapped or rarefied feature tables, using a single QIIME
+                   2 Pipeline command, or more granular QIIME 2 Action commands.
+                   Results: Given a feature table, an even sampling depth, and
+                   the number of iterations to perform (n), the command qiime
+                   boots core-metrics will resample the feature table n times
+                   and compute alpha and beta diversity metrics on each
+                   resampled table. The results will be integrated in summary
+                   data artifacts that are identical in structure and type to
+                   results that would be generated by applying diversity metrics
+                   to a single table. This enables all of the same downstream
+                   analytic tools to be applied to these tables, and ensures
+                   that all collected data is considered when computing
+                   microbiome diversity metrics. Conclusions: A challenge of
+                   this work was deciding how to integrate distance matrices
+                   that were computed on n resampled feature tables, as a simple
+                   average of pairwise distances (median or mean) does not
+                   account for the structure of distance matrices. q2-boots
+                   provides three options, and we show here that the results of
+                   these approaches are highly correlated. q2-boots is free and
+                   open source. Source code, installation instructions, and a
+                   tutorial can be found at
+                   https://github.com/caporaso-lab/q2-boots.",
+  month         =  aug,
+  year          =  2024,
+  archivePrefix = "arXiv",
+  primaryClass  = "q-bio.QM"
 }

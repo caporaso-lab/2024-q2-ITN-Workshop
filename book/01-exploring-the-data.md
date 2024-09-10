@@ -1,4 +1,6 @@
-# Exploring the Data
+(exploring-the-data)=
+# Exploring the data with Galaxy
+
 ```{usage-scope}
 ---
 name: tutorial
@@ -7,13 +9,26 @@ name: tutorial
 
 ```{usage-selector}
 ---
-default-interface: cli-usage
+default-interface: galaxy-usage
 ---
 ```
-## Access the study metadata
+
+## Access Galaxy
+
+We'll start working with QIIME 2 through the Galaxy graphical user interface.
+This is a convenient way to use QIIME 2 as it's fully graphical - no command line or coding is needed!
+However, as of now, Galaxy environments tend to have slightly older versions of QIIME 2 installed on them, and the installations are harder for you to customize (e.g., to install plugins you're interested in that aren't included in QIIME 2).
+For this reason, in this workshop we're going to teach you how to use QIIME 2 both through Galaxy and on the command line.
+
+To access the Galaxy server we'll be using for this class, go to the {{ galaxy_link }}.
+You will need to create an account the first time you use this server.
+This server is free to use, and you can feel free to continue using the account you create after the workshop has ended.
+
+(access-metadata)=
+## Access and summarize the study metadata
 
 To begin our work with QIIME 2 and the tutorial data we will
-start by downloading the metadata, generating a summary of it, and exploring
+start by downloading the metadata, generating a summary, and exploring
 that summary.
 
 First, download the metadata.
@@ -21,31 +36,10 @@ First, download the metadata.
 ```{usage}
 md_url = 'https://qiime2-workshops.s3.us-west-2.amazonaws.com/itn-aug2024/sample-metadata-v3-q2-fmt.tsv'
 
-def metadata_from_url(url):
-    def factory():
-        import tempfile
-        import requests
-        import qiime2
-        import pandas as pd
-
-        data = requests.get(url)
-
-        with tempfile.NamedTemporaryFile() as f:
-            f.write(data.content)
-            f.flush()
-            fmt_metadata = pd.read_csv(f.name, sep='\t').set_index('SampleID')
-            # drop #q2:types from the metadata
-            fmt_metadata = fmt_metadata.drop(['#q2:types'])
-            result = qiime2.Metadata(fmt_metadata)
-
-        return result
-    return factory
-
-sample_metadata = use.init_metadata('sample_metadata',
-                                    metadata_from_url(md_url))
-
+sample_metadata = use.init_metadata_from_url('sample_metadata', md_url)
 ```
 
+Next, we’ll get a view of the study metadata using QIIME 2. This will allow you to assess whether the metadata that QIIME 2 is using is as you expect. You can do this using the tabulate action in QIIME 2’s q2-metadata plugin as follows.
 
 ```{usage}
 use.action(
@@ -55,43 +49,22 @@ use.action(
 )
 ```
 
-We could download this file but that means we will have to filter 
-otherwise we need to host the autofmt group feature table 
-```{usage}
+(access-feature-table)=
+## Access and summarize the feature table
 
-feature_table_url = 'https://data.qiime2.org/2024.5/tutorials/liao/full-feature-table.qza'
+The feature table will describe the amplicon sequence variants (ASVs) observed in each sample, and how many times each ASV was observed in each sample. The feature data in this case is the sequence that defines each ASV.
 
-def artifact_from_url(url):
-    def factory():
-        import tempfile
-        import requests
-        import qiime2
+In this tutorial, we're going to work specifically with samples that were
+included in the autoFMT randomized trial.
 
-        data = requests.get(url)
-
-        with tempfile.NamedTemporaryFile() as f:
-            f.write(data.content)
-            f.flush()
-            result = qiime2.Artifact.load(f.name)
-
-        return result
-    return factory
-
-feature_table = use.init_artifact(
-        'feature-table',
-        artifact_from_url(feature_table_url))
-
-```
+Lets generate and explore a summary of the feature table we will be using.
 
 ```{usage}
-autofmt_table, = use.action(
-    use.UsageAction(plugin_id='feature_table', action_id='filter_samples'),
-    use.UsageInputs(table=feature_table, metadata=sample_metadata),
-    use.UsageOutputNames(filtered_table='autofmt_table')
-)
-```
 
-Filtering, if we don't host a filtered table. 
+feature_table_url = 'https://qiime2-workshops.s3.us-west-2.amazonaws.com/itn-aug2024/autofmt-table.qza'
+
+autofmt_table = use.init_artifact_from_url('feature-table', feature_table_url)
+```
 
 ```{usage}
 use.action(
