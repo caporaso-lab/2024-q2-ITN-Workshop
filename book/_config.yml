@@ -38,7 +38,7 @@ sphinx:
     - q2doc.external_links
     - sphinx_exercise
   config:
-    html_baseurl: https://202408-q2-itn-workshop.readthedocs.io/en/latest/
+    html_baseurl: https://q2-cat-book.readthedocs.io/en/latest/
 
 parse:
   myst_substitutions:
