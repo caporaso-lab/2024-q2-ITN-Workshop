@@ -396,7 +396,6 @@ use.action(
 )
 
 ```
-Oh look! Clostridia seems to be a feature that consistantly engrafts from our donor! It seems like it doesnt engraft "better" than spontanous recover but it is a consistant engrafter. Firmicutes also seems to pretty consistently engraft but it is important to note that our N for this study is quite small. Bacilli seems to engraft sucessfully too but its also present before the FMT so its hard to tell if thats from the donor or just a common gut 
-🐛 bug! 
+Oh look! Clostridia seems to be a feature that consistantly engrafts from our donor! It seems like it doesnt engraft "better" than spontanous recover but it is a consistant engrafter. Firmicutes also seems to pretty consistently engraft but it is important to note that our N for this study is quite small. Bacilli seems to engraft sucessfully too but its also present before the FMT so its hard to tell if thats from the donor or just a common gut 🐛 bug! 
 
-Overall in this study it seems that we have Asymetric Chimeric Community Coalesense. We also have stability in our shift towards the donated microbiome as there are no signs that or subjects our reverting back to baseline. From these factors I would conclude that we have relatively high engraftment extent and clincal findings are probably due to FMT engraftment. I would love to see more donated microbiome indicator species to further support this claim! 
+Overall in this study it seems that we have Asymetric Chimeric Community Coalesense. We also have stability in our shift towards the donated microbiome as there are no signs that our subjects are reverting back to baseline. From these factors I would conclude that we have relatively high engraftment extent and clincal findings are probably due to FMT engraftment. I would love to see more donated microbiome indicator species to further support this claim! 
