@@ -4,10 +4,7 @@
 format: jb-book
 root: index
 chapters:
-- file: 08-workshop-infrastructure
 - file: 01-exploring-the-data
-- file: 00-set-up
-- file: 09-exploring-the-data-container
 - file: 03-sampling-depth
 - file: 04-diversity-metrics
 - file: 05-q2-fmt
